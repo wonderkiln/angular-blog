@@ -1,21 +1,27 @@
-div.wrapper
+div.wrapper(ng-controller='NavbarCtrl')
   div.navbar
     div.container
       a.navbar-brand(href="/") BeepBoop
       ul.nav.navbar-right
         li(ng-class='{active: isActive("/")}')
-          a(href="/") Reviews
+          a(href="/")
+            i.fa.fa-eye
+            |  Reviews
         li(ng-class='{active: isActive("/discover")}')
-          a(href="/discover") Discover
+          a(href="/discover")
+            i.fa.fa-globe
+            |  Discover
         li(ng-class='{active: isActive("/about")}')
-          a(href="/about") About
-        li(ng-class='{active: isActive("/login")}')
+          a(href="/about")
+            i.fa.fa-question-circle
+            |  About
+        li(ng-hide="isLoggedIn", ng-class='{active: isActive("/login")}')
           a(href="/login") Login
-        li(ng-class='{active: isActive("/admin")}')
-          a(href="/admin")
-            | Administration 
-            i.fa.fa-angle-down
+        li(ng-show="isLoggedIn", ng-class='{active: isActive("/admin")}')
+          a(href="javascript:")
+            i.fa.fa-bars
           ul.drop-down
+            li Welcome, {{currentUser.name}}
             li
               a(href="/admin/reviews") Manage reviews
             li

@@ -35,13 +35,22 @@
 				transition all linear .2s
 				& > a
 					padding 0 15px
-					border-left 1px solid rgb(20,20,20)
+					display block
+					&:before
+						content ''
+						display inline-block
+						margin 10px 0
+						width 1px
+						height 30px
+						background rgb(20,20,20)
+						position absolute
+						left 0
 				&:hover, &.active
 					background rgb(20,20,20)
 					ul.drop-down
 						display block
-				&:first-child a
-					border-left none
+				&:first-child a:before
+					display none
 				ul.drop-down
 					min-width 100%
 					background rgb(60,60,60)
@@ -49,22 +58,12 @@
 					position absolute
 					display none
 					right 0
+					top 100%
 					li
 						margin 0 15px
 						border-top 1px solid rgb(40,40,40)
 						display block
 						&:first-child
 							border-top none
-					&:after
-						bottom 100%
-						left 50%
-						border solid transparent
-						content " "
-						height 0
-						width 0
-						position absolute
-						pointer-events none
-						border-style: solid
-						border-width 0 8px 8px 8px
-						border-color transparent transparent rgb(60,60,60) transparent
-						margin-left -8px
+						a
+							display block
