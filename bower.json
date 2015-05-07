@@ -9,6 +9,7 @@
     "angular-resource": ">=1.2.*",
     "angular-cookies": ">=1.2.*",
     "angular-sanitize": ">=1.2.*",
+    "angular-animate": ">=1.2.*",
     "font-awesome": ">=4.1.0",
     "lodash": "~2.4.1",
     "angular-socket-io": "~0.6.0",

@@ -8,21 +8,21 @@
   font-family: 'Clear Sans'
   src: url('../assets/fonts/ClearSans-Regular-webfont.eot')
   src: url('../assets/fonts/ClearSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../assets/fonts/ClearSans-Regular-webfont.woff') format('woff'),
-       url('../assets/fonts/ClearSans-Regular-webfont.ttf') format('truetype'),
-       url('../assets/fonts/ClearSans-Regular-webfont.svg#clear_sansregular') format('svg')
+  url('../assets/fonts/ClearSans-Regular-webfont.woff') format('woff'),
+  url('../assets/fonts/ClearSans-Regular-webfont.ttf') format('truetype'),
+  url('../assets/fonts/ClearSans-Regular-webfont.svg#clear_sansregular') format('svg')
   font-weight: 500
   font-style: normal
   
 @font-face
-    font-family: 'Clear Sans'
-    src: url('../assets/fonts/ClearSans-Light-webfont.eot')
-    src: url('../assets/fonts/ClearSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../assets/fonts/ClearSans-Light-webfont.woff') format('woff'),
-         url('../assets/fonts/ClearSans-Light-webfont.ttf') format('truetype'),
-         url('../assets/fonts/ClearSans-Light-webfont.svg#clear_sans_lightregular') format('svg')
-    font-weight: 300
-    font-style: normal
+  font-family: 'Clear Sans'
+  src: url('../assets/fonts/ClearSans-Light-webfont.eot')
+  src: url('../assets/fonts/ClearSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+  url('../assets/fonts/ClearSans-Light-webfont.woff') format('woff'),
+  url('../assets/fonts/ClearSans-Light-webfont.ttf') format('truetype'),
+  url('../assets/fonts/ClearSans-Light-webfont.svg#clear_sans_lightregular') format('svg')
+  font-weight: 300
+  font-style: normal
 
 @font-face
   font-family: 'FontAwesome'
@@ -38,11 +38,54 @@
 // App-wide Styles
 //
 
+#master
+  transition all linear 1s
+  .navbar
+  .page
+  #cover
+    transition all ease-in-out .5s
+
+#master.ng-enter
+  .navbar
+    transform translateY(-100px)
+  .page
+    opacity 0
+    transform translateY(100px)
+  #cover
+    opacity 0
+
+#master.ng-enter-active
+  .navbar
+    transform translateY(0)
+  .page
+    opacity 1
+    transform translateY(0)
+  #cover
+    opacity 1
+
+#master.ng-leave
+  .navbar
+    // transform translateY(0)
+  .page
+    opacity 1
+    // transform translateY(0)
+  #cover
+    opacity 1
+
+#master.ng-leave-active
+  .navbar
+    // transform translateY(-100px)
+  .page
+    opacity 0
+    // transform translateY(100px)
+  #cover
+    opacity 0
+
 .browsehappy
-    background #ccc
-    color #000
-    margin 0.2em 0
-    padding 0.2em 0
+  background #ccc
+  color #000
+  margin 0.2em 0
+  padding 0.2em 0
     
 *
   margin 0

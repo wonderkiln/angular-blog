@@ -4,6 +4,7 @@ angular.module 'beepBoopWebsiteApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'btford.socket-io',
   'ui.router'
 ]
