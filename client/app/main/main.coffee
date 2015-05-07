@@ -7,3 +7,7 @@ angular.module 'beepBoopWebsiteApp'
     url: '/'
     templateUrl: 'app/main/main.html'
     controller: 'MainCtrl'
+  .state 'main-detail',
+    url: '/:id'
+    templateUrl: 'app/main/main-detail.html'
+    controller: 'MainCtrl'
