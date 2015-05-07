@@ -1,0 +1,38 @@
+.wrapper
+	width 800px
+	margin 0 auto
+
+.navbar
+	margin 20px 0
+	height 50px
+	padding 0 15px 0 30px
+	background rgb(50,50,50)
+	// box-shadow 0 2px 4px rgba(0,0,0,.4)
+	// border-radius 3px
+	color rgba(255,255,255,.8)
+	line-height 50px
+	font-size 14px
+	.navbar-brand
+		float left
+	a
+		color rgba(255,255,255,.8)
+		text-decoration none
+		&:hover
+			color white
+	ul.nav
+		margin 0
+		padding 0
+		list-style none
+		&.navbar-right
+			float right
+		li
+			float left
+			transition all linear .2s
+			a
+				padding 0 15px
+				border-left 1px solid rgb(20,20,20)
+			&:hover, &.active
+				background rgb(20,20,20)
+				box-shadow 0 -2px 0 #50E3C2 inset
+			&:first-child a
+				border-left none
