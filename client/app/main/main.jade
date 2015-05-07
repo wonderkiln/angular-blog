@@ -1,102 +1,14 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 div.wrapper(style="width: 806px;")
-	div.tile.tile-100.big
+	div.tile(ng-repeat="review in reviews", class="{{ $index == 0 ? review.type + ' big' : review.type }}")
 		a.item(href="\a")
-			div.cover
+			div.cover(style="background-image: url('{{review.cover}}');")
 			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-100
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-25
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-75
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
-	div.tile.tile-50
-		a.item(href="\a")
-			div.cover
-			div.content
-				h1 Master Chief
-				p This is the best game ever...
+				div.platforms
+					img(ng-repeat="platform in review.platforms", src="assets/images/platforms/{{platform}}-dark.png", height="32")
+				h1 {{review.title}}
+				p {{review.description | limitTo: 100}}...
 
 //- header#banner.hero-unit
 //-   .container

@@ -18,6 +18,8 @@
     
 .tile-25
     width 25%
+    p
+        display none
     
 .tile-75
     width 75%
@@ -30,13 +32,14 @@
     position relative
     text-decoration none
     display block
+    overflow hidden
     .cover
         opacity .4
     &:hover
-        .cover
-            opacity 1
-        .content
-            opacity 0
+        // .cover
+            // opacity 1
+        // .content
+        //     opacity 0
             
 .section
     margin-bottom 60px

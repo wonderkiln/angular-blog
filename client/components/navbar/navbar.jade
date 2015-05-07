@@ -3,12 +3,25 @@ div.wrapper
     div.container
       a.navbar-brand(href="/") BeepBoop
       ul.nav.navbar-right
-        li.active(ng-class='{active: isActive("/")}')
+        li(ng-class='{active: isActive("/")}')
           a(href="/") Reviews
         li(ng-class='{active: isActive("/discover")}')
           a(href="/discover") Discover
         li(ng-class='{active: isActive("/about")}')
           a(href="/about") About
+        li(ng-class='{active: isActive("/login")}')
+          a(href="/login") Login
+        li(ng-class='{active: isActive("/admin")}')
+          a(href="/admin")
+            | Administration 
+            i.fa.fa-angle-down
+          ul.drop-down
+            li
+              a(href="/admin/reviews") Manage reviews
+            li
+              a(href="/admin/users") Manage users
+            li
+              a(href="javascript:", ng-click="logout()") Logout
 
 
 

@@ -7,8 +7,6 @@
 	height 50px
 	padding 0 15px 0 30px
 	background rgb(50,50,50)
-	// box-shadow 0 2px 4px rgba(0,0,0,.4)
-	// border-radius 3px
 	color rgba(255,255,255,.8)
 	line-height 50px
 	font-size 14px
@@ -21,20 +19,52 @@
 		text-decoration none
 		&:hover
 			color white
-	ul.nav
+	ul
 		margin 0
 		padding 0
 		list-style none
-		&.navbar-right
-			float right
-		li
-			float left
-			transition all linear .2s
-			a
-				padding 0 15px
-				border-left 1px solid rgb(20,20,20)
-			&:hover, &.active
-				background rgb(20,20,20)
-				// box-shadow 0 -2px 0 #50E3C2 inset
-			&:first-child a
-				border-left none
+		&.nav
+			margin 0
+			padding 0
+			list-style none
+			&.navbar-right
+				float right
+			& > li
+				float left
+				position relative
+				transition all linear .2s
+				& > a
+					padding 0 15px
+					border-left 1px solid rgb(20,20,20)
+				&:hover, &.active
+					background rgb(20,20,20)
+					ul.drop-down
+						display block
+				&:first-child a
+					border-left none
+				ul.drop-down
+					min-width 100%
+					background rgb(60,60,60)
+					white-space nowrap
+					position absolute
+					display none
+					right 0
+					li
+						margin 0 15px
+						border-top 1px solid rgb(40,40,40)
+						display block
+						&:first-child
+							border-top none
+					&:after
+						bottom 100%
+						left 50%
+						border solid transparent
+						content " "
+						height 0
+						width 0
+						position absolute
+						pointer-events none
+						border-style: solid
+						border-width 0 8px 8px 8px
+						border-color transparent transparent rgb(60,60,60) transparent
+						margin-left -8px
