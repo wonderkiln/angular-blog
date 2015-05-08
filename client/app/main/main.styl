@@ -81,6 +81,12 @@ p
     margin-bottom 100px
     background white
     box-shadow 0 0 20px rgba(0,0,0,.1)
+    &.dark
+        background $dark_bg
+        *
+            color $dark_color
+    &.no-shadow
+        box-shadow none
     *
         color: rgb(50,50,50)
     .content

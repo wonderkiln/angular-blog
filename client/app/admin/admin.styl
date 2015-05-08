@@ -1,2 +1,76 @@
-.trash
-    color rgb(209, 91, 71)
+ul.items
+	margin 0
+	padding 0
+	list-style none
+	line-height 60px
+	font-size 14px
+	li
+		padding 0 30px
+		display block
+		&.group
+			padding-top 30px
+			.label
+				font-size 11px
+				font-weight 700
+				text-transform uppercase
+			& + li .value
+				border-top 1px solid $dark_border
+		&:hover:not(.group)
+			background $dark_border
+		.right
+			float right
+			& > *
+				margin-left 10px
+		.label, .value
+			display inline-block
+		.label
+			padding-right 15px
+			width 25%
+			font-size 13px
+			color rgb(150,150,150)
+			text-align right
+			vertical-align top
+		.value
+			border-bottom 1px solid $dark_border
+			
+			width 75%
+			font-size 14px
+			&.custom
+				padding-top 15px
+				padding-bottom 15px
+				line-height normal
+		input.value, select.value
+			background none
+			padding 0
+			// padding-left 15px
+			color white
+			line-height 60px
+			
+.tag
+	margin 2px
+	padding 0 15px
+	display inline-block
+	background $highlight
+	color white
+	line-height 30px
+	font-size 12px
+	border-radius 15px
+	.delete
+		margin-left 5px
+		float right
+		font-size 15px
+				
+
+.block
+	width 100%
+	display block
+
+input, select
+	// min-width 200px
+	padding 4px 10px
+	background white
+	border none
+	outline none
+	// border-radius 3px
+	// color black !important
+	// font-size 13px

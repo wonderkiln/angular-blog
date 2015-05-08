@@ -3,10 +3,16 @@
 angular.module 'beepBoopWebsiteApp'
 .controller 'AdminCtrl', ($scope, $http, Auth, User) ->
 
-  $http.get '/api/users'
-  .success (users) ->
-    $scope.users = users
+  $http.get('/api/posts').success (posts) ->
+    $scope.posts = posts
 
-  $scope.delete = (user) ->
-    User.remove id: user._id
-    _.remove $scope.users, user
+.controller 'AdminPostsCtrl', ($scope, $http, Auth, User) ->
+
+	$scope.add = (post) ->
+		# TODO
+
+	$scope.update = (post) ->
+		# TODO
+
+	$scope.delete = (post) ->
+		# TODO

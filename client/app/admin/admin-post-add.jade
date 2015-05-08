@@ -1,0 +1,77 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.wrapper
+	.page.dark.no-shadow
+		ul.items
+			li.group
+				span.label Basic info
+			li
+				span.label Title
+				input.value(type="text", placeholder="Enter a value...")
+			li
+				span.label Content
+				input.value(type="text", placeholder="Enter a value...")
+			li
+				span.label Cover
+				input.value(type="text", placeholder="Enter a value...")
+			li
+				span.label Date
+				input.value(type="date")
+			li.group
+				span.label Post authors
+			li
+				span.label Authors
+				span.value.custom(ng-init="as = ['Adrian Mateoaea', 'Austin Kettner']")
+					span.tag(ng-repeat="i in as")
+						| {{i}}
+						a.delete(href="javascript:", ng-click="as.splice(as.indexOf(i), 1);")
+							i.fa.fa-times-circle
+			li
+				form(ng-submit="as.push(newAuthorName)")
+					span.label
+					input.value(type="text", placeholder="Enter a new author...", ng-model="newAuthorName")
+			li.group
+				span.label Post tags
+			li
+				span.label Tags
+				span.value.custom(ng-init="is = ['c#', 'ios', 'android', 'objective-c']")
+					span.tag(ng-repeat="i in is")
+						| {{i}}
+						a.delete(href="javascript:", ng-click="is.splice(is.indexOf(i), 1);")
+							i.fa.fa-times-circle
+			li
+				form(ng-submit="is.push(newTagName)")
+					span.label
+					input.value(type="text", placeholder="Enter a new tag...", ng-model="newTagName")
+			li.group
+				span.label Advanced
+			li
+				span.label Featured
+				span.value
+					input(type="checkbox")
+			li
+				span.label Published
+				span.value
+					input(type="checkbox")
+			li
+				span.label Game Card
+				span.value
+					input(type="checkbox", ng-model="post.gameCard")
+			li.group(ng-show="post.gameCard")
+				span.label Game Card
+			li(ng-show="post.gameCard")
+				span.label Publisher
+				input.value(type="text", placeholder="Enter a value...")
+			li(ng-show="post.gameCard")
+				span.label Publisher
+				input.value(type="text", placeholder="Enter a value...")
+			li(ng-show="post.gameCard")
+				span.label Publisher
+				input.value(type="text", placeholder="Enter a value...")
+			li(ng-show="post.gameCard")
+				span.label Publisher
+				input.value(type="text", placeholder="Enter a value...")
+			li(ng-show="post.gameCard")
+				span.label Publisher
+				input.value(type="text", placeholder="Enter a value...")
+

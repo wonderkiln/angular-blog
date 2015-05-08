@@ -1,15 +1,15 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 div.wrapper(style="width: 806px;")
-	div.tile(ng-repeat="review in reviews", class="{{ $index == 0 ? review.type + ' big' : review.type }}")
-		a.item(href="/some-review-item")
-			div.cover(style="background-image: url('{{review.cover}}');")
+	div.tile.tile-100(ng-repeat="post in posts")
+		a.item(href="/some-post-item")
+			div.cover(style="background-image: url('{{post.cover}}');")
 			div.content.bottom
 				div.platforms
 					h1
-						i(ng-repeat="platform in review.platforms", class="fa fa-{{platform}}", style="margin-right: 10px;")
-				h1 {{review.title}}
-				p {{review.description | limitTo: 100}}...
+						i(ng-repeat="platform in post.platforms", class="fa fa-{{platform}}", style="margin-right: 10px;")
+				h1 {{post.title}}
+				p {{post.content | limitTo: 100}}...
 
 //- header#banner.hero-unit
 //-   .container

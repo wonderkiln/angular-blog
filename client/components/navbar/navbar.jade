@@ -1,9 +1,11 @@
 div.wrapper(ng-controller='NavbarCtrl')
   div.navbar
     div.container
-      a.navbar-brand(href="/") BeepBoop
+      a.navbar-brand(href="/", ng-hide="isActive('/admin')") BeepBoop
+      a.navbar-brand(href="javascript:window.history.back();", ng-show="isActive('/admin')")
+        i.fa.fa-arrow-left
       ul.nav.navbar-right
-        li(ng-class='{active: isActive("/")}')
+        li(ng-class='{active: isActive("/reviews")}')
           a(href="/")
             i.fa.fa-eye
             |  Reviews
@@ -17,13 +19,13 @@ div.wrapper(ng-controller='NavbarCtrl')
             |  About
         li(ng-hide="isLoggedIn", ng-class='{active: isActive("/login")}')
           a(href="/login") Login
-        li(ng-show="isLoggedIn", ng-class='{active: isActive("/admin")}')
+        li(ng-show="isLoggedIn")
           a(href="javascript:")
             i.fa.fa-bars
           ul.drop-down
             li Welcome, {{currentUser.name}}
             li
-              a(href="/admin/reviews") Manage reviews
+              a(href="/admin/posts") Manage posts
             li
               a(href="/admin/users") Manage users
             li

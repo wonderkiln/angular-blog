@@ -1,0 +1,11 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.wrapper
+	.page.dark.no-shadow
+		ul.items
+			li
+				span.right
+					input(placeholder="Filter posts...", ng-model="filter.$")
+			li(ng-repeat="post in posts | filter:filter")
+				a(href="/admin/posts/edit/{{post._id}}")
+					{{$index + 1}}. {{post.title}}
