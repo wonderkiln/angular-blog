@@ -6,7 +6,11 @@ angular.module 'beepBoopWebsiteApp'
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
-.controller 'AdminPostsCtrl', ($scope, $http, Auth, User) ->
+.controller 'AdminPostsCtrl', ($scope, $http, $stateParams) ->
+
+	url = if $stateParams.hasOwnProperty 'id' then '/api/posts/' + $stateParams.id else '/api/posts'
+	$http.get(url).success (r) ->
+		$scope.result = r
 
 	$scope.add = (post) ->
 		# TODO

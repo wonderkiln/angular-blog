@@ -31,18 +31,17 @@ ul.items
 			text-align right
 			vertical-align top
 		.value
-			border-bottom 1px solid $dark_border
-			
 			width 75%
+			border-bottom 1px solid $dark_border
 			font-size 14px
 			&.custom
 				padding-top 15px
 				padding-bottom 15px
 				line-height normal
+				min-height 60px
 		input.value, select.value
 			background none
 			padding 0
-			// padding-left 15px
 			color white
 			line-height 60px
 			
@@ -55,11 +54,16 @@ ul.items
 	line-height 30px
 	font-size 12px
 	border-radius 15px
+	text-decoration none
+	&.disabled
+		background rgb(80,80,80)
 	.delete
 		margin-left 5px
 		float right
 		font-size 15px
-				
+			
+.icon-left
+	margin-right 8px	
 
 .block
 	width 100%

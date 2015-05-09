@@ -2,7 +2,7 @@
 
 angular.module 'beepBoopWebsiteApp'
 .controller 'LoginCtrl', ($scope, Auth, $location, $window) ->
-  $scope.user = {}
+  $scope.user = {email: 'admin@admin.com', password: 'admin'}
   $scope.errors = {}
   $scope.login = (form) ->
     $scope.submitted = true
