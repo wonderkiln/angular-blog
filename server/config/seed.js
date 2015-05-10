@@ -13,7 +13,6 @@ Post.find({}).remove(function() {
   for(var i = 1; i <= 10; i++) {
     Post.create({
       title: 'Assassin\'s Creed II Mega Review no. ' + i,
-      authors: ['Adrian Mateoaea', 'Austin Kettner', 'James Hilton'],
       tags: ['tag1', 'tag2', 'tag3'],
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       cover: 'http://dormroomfund.com/img/slider-images/new-york-city.jpg',
@@ -54,6 +53,16 @@ User.find({}).remove(function() {
     name: 'Test User',
     email: 'test@test.com',
     password: 'test'
+  }, {
+    provider: 'local',
+    name: 'Adrian Mateoaea',
+    email: 'adrian@test.com',
+    password: 'adrian'
+  }, {
+    provider: 'local',
+    name: 'Austin Kettner',
+    email: 'austin@test.com',
+    password: 'austin'
   }, {
     provider: 'local',
     role: 'admin',

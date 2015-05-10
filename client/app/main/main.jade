@@ -1,44 +1,12 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 div.wrapper(style="width: 806px;")
-	div.tile.tile-100(ng-repeat="post in posts")
-		a.item(href="/some-post-item")
-			div.cover(style="background-image: url('{{post.cover}}');")
+	div.tile(ng-repeat="post in posts", class="{{getTile($index)}}")
+		a.item(href="/{{post._id}}", style="background: {{getColor($index)}};")
+			div.cover(style="background: url('http://lorempixel.com/1000/{{600 + $index}}/');")
 			div.content.bottom
 				div.platforms
 					h1
 						i(ng-repeat="platform in post.platforms", class="fa fa-{{platform}}", style="margin-right: 10px;")
 				h1 {{post.title}}
 				p {{post.content | limitTo: 100}}...
-
-//- header#banner.hero-unit
-//-   .container
-//-     h1 'Allo, 'Allo!
-//-     p.lead Kick-start your next web app with Angular Fullstack
-//-     img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
-
-//- .container
-//-   .row
-//-     .col-lg-12
-//-       h1.page-header Features:
-//-       ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
-//-         li
-//-           a(href='#', tooltip='{{thing.info}}')
-//-             | {{thing.name}}
-//-             button.close(type='button', ng-click='deleteThing(thing)') ×
-
-//-   form.thing-form
-//-     label Syncs in realtime across clients
-//-     p.input-group
-//-       input.form-control(type='text', placeholder='Add a new thing here.', ng-model='newThing')
-//-       span.input-group-btn
-//-         button.btn.btn-primary(type='submit', ng-click='addThing()') Add New
-
-//- footer.footer
-//-   .container
-//-     p
-//-       | Angular Fullstack v2.0.13
-//-       = ' | '
-//-       a(href='https://twitter.com/tyhenkel') @tyhenkel
-//-       = ' | '
-//-       a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues
