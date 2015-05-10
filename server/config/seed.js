@@ -12,11 +12,13 @@ var User = require('../api/user/user.model');
 Post.find({}).remove(function() {
   for(var i = 1; i <= 10; i++) {
     Post.create({
-      title: 'Some game...',
-      authors: ['Adrian', 'Austin'],
-      tags: ['tag1', 'tag2'],
-      content: 'Lorem...',
+      title: 'Assassin\'s Creed II Mega Review no. ' + i,
+      authors: ['Adrian Mateoaea', 'Austin Kettner', 'James Hilton'],
+      tags: ['tag1', 'tag2', 'tag3'],
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
       cover: 'http://dormroomfund.com/img/slider-images/new-york-city.jpg',
+      featured: !(Math.random()+.5 | 0),
+      published: !(Math.random()+.5 | 0),
       gameCard: {
         enabled: true
       }

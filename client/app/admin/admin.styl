@@ -7,6 +7,20 @@ ul.items
 	li
 		padding 0 30px
 		display block
+		&.alternate:nth-child(2n)
+			margin 2px 0
+			background rgba(0,0,0,.1)
+		.option
+			padding 0 20px
+			line-height 60px
+			background $highlight
+			display inline-block
+			text-decoration none
+			font-size 13px
+			&.danger
+				background #F66B3A
+			&.disabled
+				background none
 		&.group
 			padding-top 30px
 			.label
@@ -19,8 +33,6 @@ ul.items
 			background $dark_border
 		.right
 			float right
-			& > *
-				margin-left 10px
 		.label, .value
 			display inline-block
 		.label
@@ -32,6 +44,7 @@ ul.items
 			vertical-align top
 		.value
 			width 75%
+			border none
 			border-bottom 1px solid $dark_border
 			font-size 14px
 			&.custom
@@ -70,11 +83,9 @@ ul.items
 	display block
 
 input, select
-	// min-width 200px
-	padding 4px 10px
+	min-width 200px
+	padding 5px 8px
 	background white
-	border none
+	border 1px solid rgb(200,200,200)
 	outline none
-	// border-radius 3px
-	// color black !important
-	// font-size 13px
+	font-size 13px

@@ -29,7 +29,11 @@ div(ng-include='"components/navbar/navbar.html"')
 			li
 				form(ng-submit="result.authors.push(newAuthorName)")
 					span.label
-					input.value(type="text", placeholder="Enter a new author...", ng-model="newAuthorName")
+					input.value(type="text", placeholder="Enter a new author...", ng-model="newAuthorName.$")
+			li(ng-init="aaa = [1,2,3,4,5,6,7,8,9]")
+				span.label All authors
+				span.value.custom
+					span.tag(ng-repeat="i in aaa | filter:newAuthorName") {{i}}
 			li.group
 				span.label Post tags
 			li
@@ -47,16 +51,19 @@ div(ng-include='"components/navbar/navbar.html"')
 				span.label Advanced
 			li
 				span.label Featured
-				span.value
-					input(type="checkbox", ng-model="result.featured")
+				span.value.custom
+					a.tag(href="javascript:", ng-class="{disabled: !result.featured}", ng-click="result.featured = !result.featured")
+						i.fa.fa-check
 			li
 				span.label Published
-				span.value
-					input(type="checkbox", , ng-model="result.published")
+				span.value.custom
+					a.tag(href="javascript:", ng-class="{disabled: !result.published}", ng-click="result.published = !result.published")
+						i.fa.fa-check
 			li
 				span.label Game Card
-				span.value
-					input(type="checkbox", ng-model="result.gameCard.enabled")
+				span.value.custom
+					a.tag(href="javascript:", ng-class="{disabled: !result.gameCard.enabled}", ng-click="result.gameCard.enabled = !result.gameCard.enabled")
+						i.fa.fa-check
 			li.group(ng-show="result.gameCard.enabled")
 				span.label Game Card
 			li(ng-show="result.gameCard.enabled")
@@ -72,7 +79,7 @@ div(ng-include='"components/navbar/navbar.html"')
 				span.label Platforms
 				span.value.custom(ng-init="a = [{n: 'iOS'}, {n: 'Android'}, {n: 'Windows Phone'}, {n: 'Windows'}, {n: 'OSX'}, {n: 'Linux'}]")
 					a.tag(href="javascript:", ng-repeat="i in a", ng-class="{disabled: !i.e}", ng-click="i.e = !i.e")
-						i.fa.fa-check.icon-left1
+						i.fa.fa-check
 						|  {{i.n}}
 			li(ng-show="result.gameCard.enabled")
 				span.label Price
