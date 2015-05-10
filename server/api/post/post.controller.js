@@ -14,7 +14,7 @@ var Post = require('./post.model');
 
 // Get list of posts
 exports.index = function(req, res) {
-  Post.find(function (err, posts) {
+  Post.find({}, {}, { limit: 20, sort: { featured: -1 } }, function (err, posts) {
     if(err) { return handleError(res, err); }
     return res.json(200, posts);
   });

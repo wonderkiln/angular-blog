@@ -6,6 +6,10 @@ angular.module 'beepBoopWebsiteApp'
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
+  $(window).scroll ->
+    $('#cover').css
+      opacity: 1 - ($(window).scrollTop() / $(window).height())
+
   $scope.getColor = (index) ->
     colors = ['#F0B67F', '#FE5F55', '#D6D1B1', '#C7EFCF', '#EEF5DB']
     colors[index % colors.length]
