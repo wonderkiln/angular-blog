@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
 div.wrapper(style="width: 806px;")
 	div.tile(ng-repeat="post in posts", class="{{getTile($index)}}")
-		a.item(href="/{{post._id}}", style="background: {{getColor($index)}};")
+		a.item(href="/reviews/{{post._id}}", style="background: {{getColor($index)}};")
 			div.cover(style="background: url('http://lorempixel.com/1000/{{600 + $index}}/');")
 			div.content.bottom
 				div.platforms

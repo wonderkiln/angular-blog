@@ -4,10 +4,10 @@ angular.module 'beepBoopWebsiteApp'
 .config ($stateProvider) ->
   $stateProvider
   .state 'main',
-    url: '/'
+    url: '/reviews'
     templateUrl: 'app/main/main.html'
     controller: 'MainCtrl'
   .state 'main-detail',
-    url: '/:id'
+    url: '/reviews/:id'
     templateUrl: 'app/main/main-detail.html'
     controller: 'MainCtrl'

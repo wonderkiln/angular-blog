@@ -64,13 +64,13 @@ div(ng-include='"components/navbar/navbar.html"')
 				span.label Game Card
 			li(ng-show="result.gameCard.enabled")
 				span.label Game Name
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
+				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.gameName")
 			li(ng-show="result.gameCard.enabled")
 				span.label Publisher
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
 			li(ng-show="result.gameCard.enabled")
 				span.label Developer
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
+				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.developer")
 			li(ng-show="result.gameCard.enabled")
 				span.label Platforms
 				span.value.custom(ng-init="a = [{n: 'iOS'}, {n: 'Android'}, {n: 'Windows Phone'}, {n: 'Windows'}, {n: 'OSX'}, {n: 'Linux'}]")
@@ -79,16 +79,16 @@ div(ng-include='"components/navbar/navbar.html"')
 						|  {{i.n}}
 			li(ng-show="result.gameCard.enabled")
 				span.label Price
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
+				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.price")
 			li(ng-show="result.gameCard.enabled")
 				span.label Website
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
+				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.website")
 			li(ng-show="result.gameCard.enabled")
 				span.label Social
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
+				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.social")
 			li(ng-show="result.gameCard.enabled")
 				span.label Release Date
-				input.value(type="date", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
+				input.value(type="date", placeholder="Enter a value...", ng-model="result.gameCard.releaseDate")
 			li(ng-show="result.gameCard.enabled")
 				span.label Relevant games
 				span.value.custom
@@ -100,3 +100,7 @@ div(ng-include='"components/navbar/navbar.html"')
 				form(ng-submit="result.gameCard.relevantGameIds.push(newRelevantGame); newRelevantGame = null;")
 					span.label
 					input.value(type="text", placeholder="Enter a new game...", ng-model="newRelevantGame")
+			li.group
+				span.label
+			li.full
+				a.option.block(href="javascript:", align="center", ng-click="update(result)") Save changes

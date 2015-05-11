@@ -6,11 +6,13 @@ angular.module 'beepBoopWebsiteApp'
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
-  $scope.toggleFeatured = (checked) ->
-    # TODO
+  $scope.toggleFeatured = (post) ->
+    post.featured = !post.featured
+    $http.put '/api/posts/' + post._id, post
 
-  $scope.togglePublished = (checked) ->
-    # TODO
+  $scope.togglePublished = (post) ->
+    post.published = !post.published
+    $http.put '/api/posts/' + post._id, post
 
   $scope.delete = (post) ->
     # TODO
@@ -25,13 +27,7 @@ angular.module 'beepBoopWebsiteApp'
     $scope.result = r
 
   $scope.add = (post) ->
-    # TODO
+    $http.post '/api/posts', post
 
   $scope.update = (post) ->
-    # TODO
-
-  $scope.delete = (post) ->
-    # TODO
-
-  $scope.filterAlreadyAdded = (post) ->
-    $scope.users not in $scope.result.authors
+    $http.put '/api/posts/' + post._id, post
