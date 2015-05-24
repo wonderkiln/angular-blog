@@ -43,60 +43,11 @@ $dark_border = rgb(30,30,30)
 $dark_color = rgb(240,240,240)
 
 $highlight = #19A7D8
-$highlight_dark = darken($highlight, 20%)
+$highlight_dark = darken($highlight, 10%)
 
 //
 // App-wide Styles
 //
-
-#master1
-  transition all linear 1s
-  .navbar
-  .page
-  #cover
-    transition all ease-in-out .5s
-
-#master.ng-enter
-  .navbar
-    transform translateY(-100px)
-  .page
-    opacity 0
-    transform translateY(100px)
-  #cover
-    opacity 0
-
-#master.ng-enter-active
-  .navbar
-    transform translateY(0)
-  .page
-    opacity 1
-    transform translateY(0)
-  #cover
-    opacity 1
-
-#master.ng-leave
-  .navbar
-    // transform translateY(0)
-  .page
-    opacity 1
-    // transform translateY(0)
-  #cover
-    opacity 1
-
-#master.ng-leave-active
-  .navbar
-    // transform translateY(-100px)
-  .page
-    opacity 0
-    // transform translateY(100px)
-  #cover
-    opacity 0
-
-.browsehappy
-  background #ccc
-  color #000
-  margin 0.2em 0
-  padding 0.2em 0
     
 *
   margin 0
@@ -104,7 +55,10 @@ $highlight_dark = darken($highlight, 20%)
   box-sizing border-box
   font-family 'Clear Sans'
   font-weight 300
-  // font-size 14px
+    
+.wrapper
+  width 800px
+  margin 0 auto
 
 html, body
   background rgb(250,250,250)

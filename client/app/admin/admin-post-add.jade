@@ -2,105 +2,94 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .wrapper
 	.page.dark.no-shadow
-		ul.items
-			li.group
-				span.label Basic info
-			li
-				span.label Title
+		.vertical-form
+
+			//- Group
+			.row.group
+				label Basic info
+			.row
+				label Title
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.title")
-			li
-				span.label Content
+			.row
+				label Content
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.content")
-			li
-				span.label Cover
+			.row
+				label Cover
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.coveer")
-			li
-				span.label Date
+			.row
+				label Date Published
 				input.value(type="date", ng-model="result.date")
-			li.group
-				span.label Post authors
-			li
-				span.label Authors
+			.row
+				label Options
+				.value.group
+					a.toggle(href="javascript:", ng-class="{disabled: !result.featured}", ng-click="result.featured = !result.featured") Featured
+					a.toggle(href="javascript:", ng-class="{disabled: !result.pub.published}", ng-click="result.pub.published = !result.pub.published") Published
+					a.toggle(href="javascript:", ng-class="{disabled: !result.gameCard.enabled}", ng-click="result.gameCard.enabled = !result.gameCard.enabled") Game Card
+
+			//- Group
+			.row.group
+				label Post authors
+			.row
+				label
+				.value
+					a.toggle(href="javascript:", ng-repeat="i in result.authors", ng-click="result.authors.splice(result.authors.indexOf(i), 1);") {{i.name}}
+			.row
+				label Select a user
 				span.value.custom
-					span.tag(ng-repeat="i in result.authors")
-						| {{i.name}}
-						a.delete(href="javascript:", ng-click="result.authors.splice(result.authors.indexOf(i), 1);")
-							i.fa.fa-times-circle
-			li
-				span.label Available users
-				span.value.custom
-					a.tag(href="javascript:", ng-repeat="user in users | filter:filterAlreadyAdded", ng-click="result.authors.push(user)") {{user.name}}
-			li.group
-				span.label Post tags
-			li
-				span.label Tags
-				span.value.custom
-					span.tag(ng-repeat="i in result.tags")
-						| {{i}}
-						a.delete(href="javascript:", ng-click="result.tags.splice(result.tags.indexOf(i), 1);")
-							i.fa.fa-times-circle
-			li
+					a.toggle(href="javascript:", ng-repeat="user in users", ng-click="result.authors.push(user)") {{user.name}}
+			
+			//- Group
+			.row.group
+				label Post tags
+			.row
+				label Tags
+				.value
+					a.toggle(href="javascript:", ng-repeat="i in result.tags", ng-click="result.tags.splice(result.tags.indexOf(i), 1);") {{i}}
+			.row
 				form(ng-submit="result.tags.push(newTagName)")
-					span.label
+					label
 					input.value(type="text", placeholder="Enter a new tag...", ng-model="newTagName")
-			li.group
-				span.label Advanced
-			li
-				span.label Featured
-				span.value.custom
-					a.tag(href="javascript:", ng-class="{disabled: !result.featured}", ng-click="result.featured = !result.featured")
-						i.fa.fa-check
-			li
-				span.label Published
-				span.value.custom
-					a.tag(href="javascript:", ng-class="{disabled: !result.published}", ng-click="result.published = !result.published")
-						i.fa.fa-check
-			li
-				span.label Game Card
-				span.value.custom
-					a.tag(href="javascript:", ng-class="{disabled: !result.gameCard.enabled}", ng-click="result.gameCard.enabled = !result.gameCard.enabled")
-						i.fa.fa-check
-			li.group(ng-show="result.gameCard.enabled")
-				span.label Game Card
-			li(ng-show="result.gameCard.enabled")
-				span.label Game Name
+
+			//- Group
+			.row.group(ng-show="result.gameCard.enabled")
+				label Game Card
+			.row(ng-show="result.gameCard.enabled")
+				label Game Name
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.gameName")
-			li(ng-show="result.gameCard.enabled")
-				span.label Publisher
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.publisher")
-			li(ng-show="result.gameCard.enabled")
-				span.label Developer
+			.row(ng-show="result.gameCard.enabled")
+				label Pub.rowsher
+				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.pub.rowsher")
+			.row(ng-show="result.gameCard.enabled")
+				label Developer
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.developer")
-			li(ng-show="result.gameCard.enabled")
-				span.label Platforms
-				span.value.custom(ng-init="a = [{n: 'iOS'}, {n: 'Android'}, {n: 'Windows Phone'}, {n: 'Windows'}, {n: 'OSX'}, {n: 'Linux'}]")
-					a.tag(href="javascript:", ng-repeat="i in a", ng-class="{disabled: !i.e}", ng-click="i.e = !i.e")
-						i.fa.fa-check
-						|  {{i.n}}
-			li(ng-show="result.gameCard.enabled")
-				span.label Price
+			.row(ng-show="result.gameCard.enabled")
+				label Platforms
+				.value.group(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'OSX', 'Windows', 'Linux']")
+					a.toggle(href="javascript:", ng-repeat="i in platforms", ng-class="{disabled: result.gameCard.platforms.indexOf(i) == -1}", ng-click="togglePlatform(i)") {{i}}
+			.row(ng-show="result.gameCard.enabled")
+				label Price
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.price")
-			li(ng-show="result.gameCard.enabled")
-				span.label Website
+			.row(ng-show="result.gameCard.enabled")
+				label Website
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.website")
-			li(ng-show="result.gameCard.enabled")
-				span.label Social
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.social")
-			li(ng-show="result.gameCard.enabled")
-				span.label Release Date
+			.row(ng-show="result.gameCard.enabled")
+				label Social
+				.value
+					.block(ng-repeat="(key, value) in result.gameCard.social")
+						| {{key}}: 
+						input.value(placeholder="Enter a value...", ng-model="value")
+			.row(ng-show="result.gameCard.enabled")
+				label Release Date
 				input.value(type="date", placeholder="Enter a value...", ng-model="result.gameCard.releaseDate")
-			li(ng-show="result.gameCard.enabled")
-				span.label Relevant games
-				span.value.custom
-					span.tag(ng-repeat="i in result.gameCard.relevantGameIds track by $index")
-						| {{i}}
-						a.delete(href="javascript:", ng-click="result.gameCard.relevantGameIds.splice(result.gameCard.relevantGameIds.indexOf(i), 1);")
-							i.fa.fa-times-circle
-			li(ng-show="result.gameCard.enabled")
+			.row(ng-show="result.gameCard.enabled")
+				label Relevant games
+				.value
+					a.toggle(href="javascript:", ng-repeat="i in result.gameCard.relevantGameIds track by $index", ng-click="result.gameCard.relevantGameIds.splice(result.gameCard.relevantGameIds.indexOf(i), 1);") {{i}}
+			.row(ng-show="result.gameCard.enabled")
 				form(ng-submit="result.gameCard.relevantGameIds.push(newRelevantGame); newRelevantGame = null;")
-					span.label
+					label
 					input.value(type="text", placeholder="Enter a new game...", ng-model="newRelevantGame")
-			li.group
-				span.label
-			li.full
-				a.option.block(href="javascript:", align="center", ng-click="update(result)") Save changes
+			.row.group
+				label
+			.row.full
+				a.option.block(href="javascript:", a.rowgn="center", ng-c.rowck="update(result)") Save changes

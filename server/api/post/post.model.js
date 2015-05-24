@@ -13,8 +13,7 @@ var PostSchema = new Schema({
 	dateCreated: { type: Date, default: Date.now },
 	dateModified: { type: Date, default: Date.now },
 	featured: Boolean,
-	published: Boolean,
-	rating: Number,
+	published: { type: Boolean, default: true },
 	gameCard: {
 		enabled: { type: Boolean, default: false },
 		publisher: String,
@@ -23,7 +22,11 @@ var PostSchema = new Schema({
 		platforms: [],
 		price: String,
 		website: String,
-		social: [],
+		social: {
+			facebook: String,
+			twitter: String,
+			youtube: String
+		},
 		releaseDate: Date,
 		relevantGameIds: []
 	}

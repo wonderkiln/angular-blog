@@ -11,16 +11,13 @@ div(ng-include='"components/navbar/navbar.html"')
           |  New post
     input(type="text", placeholder="Filter blog posts...", ng-model="filter.title")
   .page.dark.no-shadow
-    ul.items
-      li.alternate(ng-repeat="post in filtered = (posts | filter:filter)", style="padding-right: 0")
+    .vertical-form
+      .row(ng-repeat="post in filtered = (posts | filter:filter)", style="padding-right: 0")
         a(href="/admin/posts/edit/{{post._id}}", style="text-decoration: none;") {{post.title}}
-        span.right
-          a.option(href="javascript:", ng-click="toggleFeatured(post)", ng-class="{disabled: !post.featured}")
+        .group.right
+          a.toggle(href="javascript:", ng-click="toggleFeatured(post)", ng-class="{disabled: !post.featured}")
             i.fa.fa-star
-            |  Featured
-          a.option(style="margin-left: 2px", href="javascript:", ng-click="togglePublished(post)", ng-class="{disabled: !post.published}")
+          a.toggle(href="javascript:", ng-click="togglePublished(post)", ng-class="{disabled: !post.published}")
             i.fa.fa-eye
-            |  Published
-          a.option.danger(style="margin-left: 2px", href="javascript:")
+          a.toggle.danger(href="javascript:")
             i.fa.fa-trash
-            |  Delete

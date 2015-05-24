@@ -11,6 +11,10 @@ angular.module 'beepBoopWebsiteApp'
     url: '/admin/posts'
     templateUrl: 'app/admin/admin-posts.html'
     controller: 'AdminCtrl'
+  .state 'admin-posts-add',
+    url: '/admin/posts/add'
+    templateUrl: 'app/admin/admin-post-add.html'
+    controller: 'AdminPostsCtrl'
   .state 'admin-posts-edit',
     url: '/admin/posts/edit/:id'
     templateUrl: 'app/admin/admin-post-add.html'

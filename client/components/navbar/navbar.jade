@@ -1,6 +1,6 @@
-div.wrapper(ng-controller='NavbarCtrl')
-  div.navbar
-    div.container
+.wrapper(ng-controller='NavbarCtrl')
+  .navbar
+    .container
       a.navbar-brand(href="/", ng-hide="isActive('/admin')") BeepBoop
       a.navbar-brand(href="javascript:window.history.back();", ng-show="isActive('/admin')")
         i.fa.fa-arrow-left
@@ -22,8 +22,7 @@ div.wrapper(ng-controller='NavbarCtrl')
         li(ng-show="isLoggedIn")
           a(href="javascript:")
             i.fa.fa-bars
-          ul.drop-down
-            li Welcome, {{currentUser.name}}
+          ul.dropdown
             li
               a(href="/admin/posts") Manage posts
             li

@@ -23,11 +23,18 @@ angular.module 'beepBoopWebsiteApp'
     $scope.users = users
 
   url = if $stateParams.hasOwnProperty 'id' then '/api/posts/' + $stateParams.id else '/api/posts'
-  $http.get(url).success (r) ->
-    $scope.result = r
+  $http.get(url).success (result) ->
+    $scope.result = result
 
   $scope.add = (post) ->
     $http.post '/api/posts', post
 
   $scope.update = (post) ->
     $http.put '/api/posts/' + post._id, post
+
+  $scope.togglePlatform = (platform) ->
+    index = $scope.result.gameCard.platforms.indexOf(platform)
+    if index == -1
+      $scope.result.gameCard.platforms.push(platform)
+    else
+      $scope.result.gameCard.platforms.splice(index, 1)
