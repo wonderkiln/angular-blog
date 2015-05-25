@@ -59,6 +59,26 @@ exports.destroy = function(req, res) {
 };
 
 /**
+ * Change a users role
+ */
+exports.changeRole = function(req, res, next) {
+  var userId = req.params.id;
+  var role = String(req.body.role);
+
+  User.findById(userId, function (err, user) {
+    user.role = role;
+    user.save(function(err) {
+      if (err) return validationError(res, err);
+      res.send(200);
+    });
+  });
+
+  User.findById(userId, function (err, user) {
+    console.log(user);
+  });
+};
+
+/**
  * Change a users password
  */
 exports.changePassword = function(req, res, next) {

@@ -1,0 +1,25 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.wrapper
+  .page.dark.no-shadow
+    .vertical-form
+      .row
+        label
+          i.fa.fa-search
+        input.value(type="text", placeholder="Search in your blog posts...", ng-model="filter.$")
+      a.row(href="/admin/posts/add")
+        label
+          i.fa.fa-plus
+        .value Create a new blog post
+  .page.dark.no-shadow
+    .vertical-form
+      a.row(href="/admin/posts/edit/{{item._id}}", ng-repeat="item in posts | filter:filter")
+        span {{item.title}}
+        span.block(style="opacity: .5;") Adrian Mateoaea, Austin Kettner
+        .group.right
+          aa.toggle(href="javascript:", ng-click="toggleFeatured(item)", ng-class="{disabled: !item.featured}")
+            i.fa.fa-thumb-tack
+          aa.toggle(href="javascript:", ng-click="togglePublished(item)", ng-class="{disabled: !item.published}")
+            i.fa.fa-eye
+          aa.toggle(href="javascript:")
+            i.fa.fa-trash

@@ -6,6 +6,9 @@ angular.module 'beepBoopWebsiteApp'
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
+  $http.get('/api/users').success (users) ->
+    $scope.users = users
+
   $scope.toggleFeatured = (post) ->
     post.featured = !post.featured
     $http.put '/api/posts/' + post._id, post
@@ -14,8 +17,19 @@ angular.module 'beepBoopWebsiteApp'
     post.published = !post.published
     $http.put '/api/posts/' + post._id, post
 
-  $scope.delete = (post) ->
+  $scope.deletePost = (post) ->
     # TODO
+
+  $scope.toggleRole = (user) ->
+    user.role = if user.role == 'admin' then 'user' else 'admin'
+    $http.put '/api/users/' + user._id + '/role', user
+
+  $scope.deleteUser = (user) ->
+    if confirm 'Delete'
+      $http.delete '/api/users/' + user._id
+      .success ->
+        index = $scope.users.indexOf user
+        $scope.users.splice index, 1
 
 .controller 'AdminPostsCtrl', ($scope, $http, $stateParams) ->
 
@@ -38,3 +52,10 @@ angular.module 'beepBoopWebsiteApp'
       $scope.result.gameCard.platforms.push(platform)
     else
       $scope.result.gameCard.platforms.splice(index, 1)
+
+.controller 'AdminUsersCtrl', ($scope, $http, $stateParams, $window) ->
+
+  $scope.addUser = (user) ->
+    $http.post '/api/users', user
+    .success ->
+      $window.history.back()

@@ -2,14 +2,14 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .wrapper
   .page.dark.no-shadow
-    form.content(name='form', ng-submit='login(form)', novalidate='')
-      h1 Login
-      div
+    form.vertical-form(ng-submit='login()', novalidate='')
+      .row.group
+        label Login
+      .row
         label Email
-      div
-        input.form-control(type='text', name='email', ng-model='user.email')
-      div
+        input.value(type='text', placeholder='Your e-mail', ng-model='user.email')
+      .row
         label Password
-      div
-        input.form-control(type='password', name='password', ng-model='user.password')
-      button.btn.btn-inverse.btn-lg.btn-login(type='submit') Login
+        input.value(type='password', placeholder='Your password', ng-model='user.password')
+      .row
+        button(type="submit") Login

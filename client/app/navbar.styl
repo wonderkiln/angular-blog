@@ -24,6 +24,8 @@
 		color rgba(255,255,255,.8)
 		text-decoration none
 		display block
+		.icon-left
+			margin-right 8px
 		&:hover
 			color white
 	ul
@@ -42,8 +44,9 @@
 				&:hover ul.dropdown
 					display block
 		&.dropdown
-			min-width 100%
+			min-width 180px
 			background $highlight
+			box-shadow 0 2px 1px rgba(0,0,0,.2)
 			white-space nowrap
 			position absolute
 			display none

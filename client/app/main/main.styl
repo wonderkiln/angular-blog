@@ -3,16 +3,21 @@
     display inline-block
     position relative
     float left
-    border 3px solid transparent
+    border 1px solid transparent
     &:hover
-        border-color rgba(0,0,0,.2)
+        // border-color rgba(0,0,0,.2)
         .cover
             opacity 1
+            filter grayscale(0)
+            -webkit-filter grayscale(0)
         .content
             opacity 0
     &.big
         height 350px
-    
+   
+.tile-33
+    width 33.33%
+
 .tile-50
     width 50%
     
@@ -21,8 +26,9 @@
     
 .tile-25
     width 25%
-    p
-        display none
+    
+.tile-25, .tile-33 p
+    display none
     
 .tile-75
     width 75%
@@ -37,6 +43,7 @@
     position relative
     display block
     overflow hidden
+    text-shadow 0 2px 1px rgba(0,0,0,.2)
     .bottom
         position absolute
         left 0
@@ -48,7 +55,7 @@
     p
         font-size 14px
     .cover
-        opacity .4
+        opacity .2
             
 .section
     margin-bottom 60px
@@ -75,6 +82,9 @@ p
     z-index 5
     transition opacity linear .3s
     
+    filter grayscale(100%)
+    -webkit-filter grayscale(100%)
+    
 .page
     margin-bottom 100px
     background white
@@ -84,6 +94,7 @@ p
         *
             color $dark_color
     &.no-shadow
+        margin-bottom 5px
         box-shadow none
     *
         color: rgb(50,50,50)

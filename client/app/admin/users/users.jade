@@ -1,0 +1,24 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.wrapper
+  .page.dark.no-shadow
+    .vertical-form
+      .row
+        label
+          i.fa.fa-search
+        input.value(type="text", placeholder="Search in your users...", ng-model="filter.$")
+      a.row(href="/admin/users/add")
+        label
+          i.fa.fa-plus
+        .value Create a new user
+  .page.dark.no-shadow
+    .vertical-form
+      .row(ng-repeat="item in users | filter:filter")
+        span {{item.name}}
+        span.block(style="opacity: .5;") {{item.email}}
+        .group.right
+          a.toggle(href="javascript:", ng-click="toggleRole(item)", ng-class="{disabled: item.role != 'admin'}") {{item.role}}
+          a.toggle(href="javascript:")
+            i.fa.fa-lock
+          a.toggle(href="javascript:", ng-click="deleteUser(item)")
+            i.fa.fa-trash

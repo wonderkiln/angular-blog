@@ -3,17 +3,27 @@
 		width 100%
 		display block
 	.right
+		// float right
 		position absolute
-		top 0
-		right 0
-		bottom 0
+		top 25px
+		right 40px
+	a.row:hover
+		background $dark_border
 	.row
-		margin 0 25px
-		padding 25px 0
+		// margin 0 25px
+		padding 22px 40px
 		border-bottom 1px solid $dark_border
 		font-size 14px
 		position relative
 		display block
+		// overflow auto
+		text-decoration none
+		&:last-child
+			border-bottom none
+		&.highlight
+			background $highlight
+			&:hover
+				background $highlight_dark
 		&.group
 			padding-top 60px
 			label
@@ -47,11 +57,11 @@
 				border-right none
 	.toggle
 		display inline-block
-		padding 8px 18px
-		border-radius 16px
+		padding 0 15px
+		border-radius 14px
 		background $highlight
 		text-decoration none
-		line-height 16px
+		line-height 28px
 		font-size 12px
 		input
 			background none
@@ -60,6 +70,8 @@
 		&:hover
 			background $highlight_dark
 			text-decoration none
+		&.danger
+				background #F54828
 		&.disabled
 			background rgba(0,0,0,.2)
 			&:hover
