@@ -57,7 +57,7 @@ div(ng-include='"components/navbar/navbar.html"')
 				label Game Name
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.gameName")
 			.row(ng-show="result.gameCard.enabled")
-				label Pub.rowsher
+				label Publisher
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.pub.rowsher")
 			.row(ng-show="result.gameCard.enabled")
 				label Developer
@@ -75,17 +75,34 @@ div(ng-include='"components/navbar/navbar.html"')
 			.row(ng-show="result.gameCard.enabled")
 				label Social
 				.value
-					.block(ng-repeat="(key, value) in result.gameCard.social")
-						| {{key}}: 
+					.block
+						| Facebook
+						br
+						input.value(placeholder="Enter a value...", ng-model="value")
+					.block
+						| Twitter
+						br
+						input.value(placeholder="Enter a value...", ng-model="value")
+					.block
+						| Youtube
+						br
+						input.value(placeholder="Enter a value...", ng-model="value")
+					.block
+						| Facebook
+						br
+						input.value(placeholder="Enter a value...", ng-model="value")
+					.block
+						| Facebook
+						br
 						input.value(placeholder="Enter a value...", ng-model="value")
 			.row(ng-show="result.gameCard.enabled")
 				label Release Date
 				input.value(type="date", placeholder="Enter a value...", ng-model="result.gameCard.releaseDate")
 			.row(ng-show="result.gameCard.enabled")
-				label Relevant games
-				.value
-					a.toggle(href="javascript:", ng-repeat="i in result.gameCard.relevantGameIds track by $index", ng-click="result.gameCard.relevantGameIds.splice(result.gameCard.relevantGameIds.indexOf(i), 1);") {{i}}
-			.row(ng-show="result.gameCard.enabled")
+				label Relevant posts
+				.value(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'OSX', 'Windows', 'Linux']")
+					a.toggle(href="javascript:", ng-repeat="i in platforms", ng-class="{disabled: result.gameCard.platforms.indexOf(i) == -1}", ng-click="togglePlatform(i)") {{i}}
+			//- .row(ng-show="result.gameCard.enabled")
 				form(ng-submit="result.gameCard.relevantGameIds.push(newRelevantGame); newRelevantGame = null;")
 					label
 					input.value(type="text", placeholder="Enter a new game...", ng-model="newRelevantGame")

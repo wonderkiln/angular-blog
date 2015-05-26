@@ -18,7 +18,11 @@ angular.module 'beepBoopWebsiteApp'
     $http.put '/api/posts/' + post._id, post
 
   $scope.deletePost = (post) ->
-    # TODO
+    if confirm 'Delete'
+      $http.delete '/api/posts/' + post._id
+      .success ->
+        index = $scope.posts.indexOf post
+        $scope.posts.splice index, 1
 
   $scope.toggleRole = (user) ->
     user.role = if user.role == 'admin' then 'user' else 'admin'

@@ -3,7 +3,9 @@
 angular.module 'beepBoopWebsiteApp'
 .controller 'LoginCtrl', ($scope, Auth, $location) ->
 
-  $scope.user = {email: 'admin@admin.com', password: 'admin'}
+  $scope.user =
+    email: 'admin@admin.com'
+    password: 'admin'
 
   $scope.login = ->
     Auth.login
