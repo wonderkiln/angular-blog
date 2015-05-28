@@ -19,7 +19,18 @@
             | About
         li(ng-hide="isLoggedIn", ng-class='{active: isActive("/login")}')
           a(href="/login")
-            i.fa.fa-unlock
+            i.fa.fa-bars
+          ul#login.dropdown
+            li
+              label Username
+              input(type="text", ng-model="user.email")
+            li
+              label Password
+              input(type="password", ng-model="user.password")
+            li
+              a(href="javascript:", ng-click="login(user)") Login
+            li
+              a(href="javascript:") Don't have an account? Register
         li(ng-if="isLoggedIn")
           a(href="javascript:")
             i.fa.fa-bars

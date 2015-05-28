@@ -4,7 +4,19 @@ angular.module 'beepBoopWebsiteApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
 
   $scope.isLoggedIn = Auth.isLoggedIn()
-  $scope.currentUser = Auth.getCurrentUser()
+
+  $scope.user =
+    email: 'admin@admin.com'
+    password: 'admin'
+
+  $scope.login = ->
+    Auth.login
+      email: $scope.user.email
+      password: $scope.user.password
+    .then ->
+      $scope.isLoggedIn = true
+    .catch (err) ->
+      alert err
 
   $scope.logout = ->
     Auth.logout()

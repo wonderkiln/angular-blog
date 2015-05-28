@@ -1,6 +1,27 @@
 'use strict'
 
 angular.module 'beepBoopWebsiteApp'
+
+.directive 'ngFileModel', [ ->
+  {
+    scope: ngFileModel: '='
+    link: (scope, element, attributes) ->
+      element.bind 'change', (changeEvent) ->
+        reader = new FileReader
+
+        reader.onload = (loadEvent) ->
+          scope.$apply ->
+            scope.ngFileModel = loadEvent.target.result
+            element.val(null);
+            return
+          return
+
+        reader.readAsDataURL changeEvent.target.files[0]
+        return
+      return
+  }
+ ]
+
 .controller 'AdminCtrl', ($scope, $http, Auth, User) ->
 
   $http.get('/api/posts').success (posts) ->
@@ -35,7 +56,9 @@ angular.module 'beepBoopWebsiteApp'
         index = $scope.users.indexOf user
         $scope.users.splice index, 1
 
-.controller 'AdminPostsCtrl', ($scope, $http, $stateParams) ->
+.controller 'AdminPostsCtrl', ($scope, $http, $stateParams, S3) ->
+
+  $scope.result = {}
 
   $http.get('/api/users').success (users) ->
     $scope.users = users
@@ -57,7 +80,16 @@ angular.module 'beepBoopWebsiteApp'
     else
       $scope.result.gameCard.platforms.splice(index, 1)
 
-.controller 'AdminUsersCtrl', ($scope, $http, $stateParams, $window) ->
+.controller 'AdminUsersCtrl', ($scope, $http, $window) ->
+
+  $scope.user = {}
+
+  $scope.upload = ->
+    $scope.user.photo = "http://lorempixel.com/100/100/"
+
+  $scope.delete = ->
+    delete $scope.photoFile
+    delete $scope.user.photo
 
   $scope.addUser = (user) ->
     $http.post '/api/users', user

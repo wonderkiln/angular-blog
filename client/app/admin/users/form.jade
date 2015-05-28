@@ -6,6 +6,20 @@ div(ng-include='"components/navbar/navbar.html"')
       .row.group
         label Basic info
       .row
+        label Picture
+        //- 
+        input.value(type="file", ng-show="!photoFile && !user.photo", ng-file-model="photoFile")
+        //- 
+        .value(ng-show="photoFile && !user.photo")
+          img(src="{{photoFile}}", height="100")
+          a.right(href="javascript:", ng-click="upload()")
+            i.fa.fa-upload
+        //- 
+        .value(ng-show="user.photo")
+          img(src="{{user.photo}}", height="100")
+          a.right(href="javascript:", ng-click="delete()")
+            i.fa.fa-times
+      .row
         label Name
         input.value(type="text", placeholder="Enter a value...", ng-model="user.name")
       .row

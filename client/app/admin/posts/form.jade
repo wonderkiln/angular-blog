@@ -15,7 +15,18 @@ div(ng-include='"components/navbar/navbar.html"')
 				input.value(type="text", placeholder="Enter a value...", ng-model="result.content")
 			.row
 				label Cover
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.coveer")
+				//- 
+				input.value(type="file", ng-show="!coverFile  && !result.cover", ng-file-model="coverFile")
+				//- 
+				.value(ng-show="coverFile && !result.cover")
+					img(src="{{coverFile}}", height="100")
+					a.right(href="javascript:", ng-click="upload()")
+						i.fa.fa-upload
+				//- 
+				.value(ng-show="result.cover")
+					img(src="{{result.cover}}", height="100")
+					a.right(href="javascript:", ng-click="delete()")
+						i.fa.fa-times
 			.row
 				label Date Published
 				input.value(type="date", ng-model="result.date")
