@@ -8,6 +8,30 @@ angular.module 'beepBoopWebsiteApp', [
   'btford.socket-io',
   'ui.router'
 ]
+.directive 'ngFileModel', [ ->
+  {
+    scope: ngFileModel: '='
+    link: (scope, element, attributes) ->
+      element.bind 'change', (changeEvent) ->
+        scope.$apply ->
+          scope.ngFileModel = changeEvent.target.files[0]
+  }
+]
+.directive 'ngFileSrc', [ ->
+  {
+    restrict: 'A'
+    link: (scope, element, attributes) ->
+      scope.$watch attributes.ngFileSrc, ->
+        fileKey = attributes.ngFileSrc
+        file = scope[fileKey]
+
+        if file?
+          reader = new FileReader
+          reader.onload = (loadEvent) ->
+            attributes.$set 'src', loadEvent.target.result
+          reader.readAsDataURL file
+  }
+]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
   $urlRouterProvider
   .otherwise '/reviews'

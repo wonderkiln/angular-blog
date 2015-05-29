@@ -1,27 +1,6 @@
 'use strict'
 
 angular.module 'beepBoopWebsiteApp'
-
-.directive 'ngFileModel', [ ->
-  {
-    scope: ngFileModel: '='
-    link: (scope, element, attributes) ->
-      element.bind 'change', (changeEvent) ->
-        reader = new FileReader
-
-        reader.onload = (loadEvent) ->
-          scope.$apply ->
-            scope.ngFileModel = loadEvent.target.result
-            element.val(null);
-            return
-          return
-
-        reader.readAsDataURL changeEvent.target.files[0]
-        return
-      return
-  }
- ]
-
 .controller 'AdminCtrl', ($scope, $http, Auth, User) ->
 
   $http.get('/api/posts').success (posts) ->
@@ -60,8 +39,14 @@ angular.module 'beepBoopWebsiteApp'
 
   $scope.result = {}
 
+  $scope.toggleRelevantGame = (checked) ->
+    alert if checked then 'YES' else 'NO'
+
   $http.get('/api/users').success (users) ->
     $scope.users = users
+
+  $http.get('/api/posts').success (posts) ->
+    $scope.posts = posts
 
   url = if $stateParams.hasOwnProperty 'id' then '/api/posts/' + $stateParams.id else '/api/posts'
   $http.get(url).success (result) ->
@@ -80,12 +65,14 @@ angular.module 'beepBoopWebsiteApp'
     else
       $scope.result.gameCard.platforms.splice(index, 1)
 
-.controller 'AdminUsersCtrl', ($scope, $http, $window) ->
+.controller 'AdminUsersCtrl', ($scope, $http, $window, S3) ->
 
   $scope.user = {}
 
   $scope.upload = ->
-    $scope.user.photo = "http://lorempixel.com/100/100/"
+    S3.upload $scope.photoFile, (finished, progress, err, url) ->
+      $scope.$apply ->
+        $scope.user.photo = url if finished
 
   $scope.delete = ->
     delete $scope.photoFile

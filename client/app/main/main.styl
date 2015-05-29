@@ -1,9 +1,48 @@
+input
+    padding 12px 20px
+    background white
+    border 1px solid rgb(220,220,220)
+    outline none
+    font-size 14px
+    color rgb(80,80,80)
+    
+button
+    padding 12px 20px
+    background $highlight
+    border none
+    outline none
+    font-size 14px
+    color white
+    &:hover
+        background $highlight_dark
+
+.block
+    width 100%
+    display block
+
+#register
+    h3
+        margin-top 20px
+        font-size 16px
+    .error
+        margin-top 20px
+        padding 12px 20px
+        background #FF3D3D
+        color white
+        font-size 13px
+        text-align center
+
+
+
+
+// 
+
 .tile
     height 200px
+    border 1px solid transparent
     display inline-block
     position relative
     float left
-    border 1px solid transparent
     &:hover
         // border-color rgba(0,0,0,.2)
         .cover
@@ -44,6 +83,7 @@
     display block
     overflow hidden
     text-shadow 0 2px 1px rgba(0,0,0,.2)
+    color white
     .bottom
         position absolute
         left 0
@@ -89,6 +129,7 @@ p
     margin-bottom 100px
     background white
     box-shadow 0 0 20px rgba(0,0,0,.1)
+    color: rgb(50,50,50)
     &.dark
         background $dark_bg
         *
@@ -96,8 +137,6 @@ p
     &.no-shadow
         margin-bottom 5px
         box-shadow none
-    *
-        color: rgb(50,50,50)
     .content
         padding 80px 100px
         text-align center
@@ -109,7 +148,7 @@ p
     
 .content
     padding 15px 25px
-    color white
+    // color white
     position relative
     z-index 10
     transition opacity linear .3s

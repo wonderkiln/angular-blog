@@ -11,9 +11,12 @@ div(ng-include='"components/navbar/navbar.html"')
         input.value(type="file", ng-show="!photoFile && !user.photo", ng-file-model="photoFile")
         //- 
         .value(ng-show="photoFile && !user.photo")
-          img(src="{{photoFile}}", height="100")
-          a.right(href="javascript:", ng-click="upload()")
-            i.fa.fa-upload
+          img(ng-file-src="photoFile", height="100")
+          .right
+            a(href="javascript:", ng-click="upload()")
+              i.fa.fa-upload
+            //- a(href="javascript:", ng-click="delete()")
+            //-   i.fa.fa-times
         //- 
         .value(ng-show="user.photo")
           img(src="{{user.photo}}", height="100")
@@ -28,6 +31,9 @@ div(ng-include='"components/navbar/navbar.html"')
       .row
         label Password
         input.value(type="password", placeholder="Enter a value...", ng-model="user.password")
+      .row
+        label Disabled
+        input.value(type="checkbox", ng-model="user.disabled")
       .row
         label Role
         select.value(ng-model="user.role")

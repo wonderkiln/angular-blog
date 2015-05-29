@@ -89,34 +89,40 @@ div(ng-include='"components/navbar/navbar.html"')
 					.block
 						| Facebook
 						br
-						input.value(placeholder="Enter a value...", ng-model="value")
+						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.facebook")
 					.block
 						| Twitter
 						br
-						input.value(placeholder="Enter a value...", ng-model="value")
+						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.twitter")
+					.block
+						| Google+
+						br
+						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.google")
+					.block
+						| Pinterest
+						br
+						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.pinterest")
+					.block
+						| Instagram
+						br
+						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.instagram")
 					.block
 						| Youtube
 						br
-						input.value(placeholder="Enter a value...", ng-model="value")
-					.block
-						| Facebook
-						br
-						input.value(placeholder="Enter a value...", ng-model="value")
-					.block
-						| Facebook
-						br
-						input.value(placeholder="Enter a value...", ng-model="value")
+						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.youtube")
 			.row(ng-show="result.gameCard.enabled")
 				label Release Date
 				input.value(type="date", placeholder="Enter a value...", ng-model="result.gameCard.releaseDate")
 			.row(ng-show="result.gameCard.enabled")
-				label Relevant posts
-				.value(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'OSX', 'Windows', 'Linux']")
-					a.toggle(href="javascript:", ng-repeat="i in platforms", ng-class="{disabled: result.gameCard.platforms.indexOf(i) == -1}", ng-click="togglePlatform(i)") {{i}}
-			//- .row(ng-show="result.gameCard.enabled")
-				form(ng-submit="result.gameCard.relevantGameIds.push(newRelevantGame); newRelevantGame = null;")
-					label
-					input.value(type="text", placeholder="Enter a new game...", ng-model="newRelevantGame")
+				label Relevant games
+				.value
+					input.toggle.block(type="text", placeholder="Filter...", ng-model="filterRelevant.$")
+					.block(style="margin-top: 10px; max-height: 200px; overflow: auto;")
+						.toggle.block(ng-repeat="i in posts | filter:filterRelevant", style="margin-bottom: 1px;", ng-click="i.checked = !i.checked", ng-class="{ disabled: !i.checked }") {{i.title}}
+							//- input(type="checkbox", ng-model="i.checked" ng-change="toggleRelevantGame(i.checked)")
+							//- |  {{i.title}}
+
+			//- Group
 			.row.group
 				label
 			a.row.highlight.option.block(href="javascript:", align="center", ng-click="update(result)") Save changes
