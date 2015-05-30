@@ -1,26 +1,11 @@
-div(ng-include='"components/navbar/navbar.html"')
-
-.wrapper
-  .page.dark.no-shadow
-    .vertical-form
-      .row
-        label
-          i.fa.fa-search
-        input.value(type="text", placeholder="Search in your blog posts...", ng-model="filter.$")
-      a.row(href="/admin/posts/add")
-        label
-          i.fa.fa-plus
-        .value Create a new blog post
-  .page.dark.no-shadow
-    .vertical-form
-      .row(ng-repeat="item in posts | filter:filter")
-        a(href="/admin/posts/edit/{{item._id}}")
-          span {{item.title}}
-          span.block(style="opacity: .5;") Adrian Mateoaea, Austin Kettner
-        .group.right
-          a.toggle(href="javascript:", ng-click="toggleFeatured(item)", ng-class="{disabled: !item.featured}")
-            i.fa.fa-thumb-tack
-          a.toggle(href="javascript:", ng-click="togglePublished(item)", ng-class="{disabled: !item.published}")
-            i.fa.fa-eye
-          a.toggle(href="javascript:", ng-click="deletePost(item)")
-            i.fa.fa-trash
+.list
+  .list-item.separator
+    input.block(type="text", placeholder="Search by title or content", ng-model="filter.$")
+  a.list-item.separator(href="javascript:", ng-click="create()", ng-class="{ 'selected': isNewPost }")
+    span.list-title Create a new blog post
+  a.list-item(href="javascript:", ng-repeat="i in posts | filter:filter", ng-click="select(i)", ng-class="{ 'selected': selectedPost == i }")
+    span.list-title {{i.title}}
+    span.list-subtitle {{i.date}}
+    span.list-more
+      i.fa.fa-star(ng-show="i.featured && i.published")
+      i.fa.fa-exclamation-circle(ng-show="!i.published")

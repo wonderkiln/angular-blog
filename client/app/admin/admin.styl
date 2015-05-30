@@ -1,80 +1,111 @@
-.vertical-form
-	.right
-		// float right
-		position absolute
-		top 25px
-		right 40px
-	a.row:hover
-		background $dark_border
-	.row
-		// margin 0 25px
-		padding 22px 40px
-		border-bottom 1px solid $dark_border
-		font-size 14px
-		position relative
-		display block
-		// overflow auto
-		text-decoration none
-		&:last-child
-			border-bottom none
-		&.highlight
-			background $highlight
-			&:hover
-				background $highlight_dark
-		&.group
-			padding-top 60px
-			label
-				font-size 12px
-				text-transform uppercase
-		label, .value
-			font-size 14px
-			display inline-block
-		label
-			width 25%
-			padding-right 20px
-			text-align right
-			vertical-align top
-			opacity .5
-		.value
-			width 75%
-			background none
-			border none
-			outline none
-	.group
-		.toggle
-			border-radius 0
-			border-right 1px solid $highlight_dark
-			float left
-			&.disabled
-				border-right 1px solid rgba(0,0,0,.4)
-			&:first-child
-				border-radius 16px 0 0 16px
-			&:last-child
-				border-radius 0 16px 16px 0
-				border-right none
-	.toggle
-		display inline-block
-		padding 0 15px
-		border-radius 14px
-		background $highlight
-		border none
-		outline none
-		text-decoration none
-		line-height 28px
-		font-size 12px
-		input
-			background none
-			border none
-			outline none
-		&:hover
-			background $highlight_dark
-			text-decoration none
-		&.danger
-				background #F54828
-		&.disabled
-			background rgba(0,0,0,.2)
-			&:hover
-				background rgba(0,0,0,.4)
+input, select
+	min-width 300px
 
-.hidden
-	display none
+.button
+	margin 0
+	padding 10px 18px
+	display inline-block
+	background #5093E1
+	border none
+	outline none
+	font-size 13px
+	color white
+	text-decoration none
+.button-link
+	font-size 13px
+	color #5093E1
+	text-decoration none
+	display block
+
+.block
+		width 100%
+		display block
+
+.bottom
+	position absolute
+	bottom 0
+	left 0
+	right 0
+	
+.sidebar
+	width 60px
+	background #1B2224
+	.sidebar-item
+		width 60px
+		height 60px
+		display block
+		text-align center
+		line-height 60px
+		font-size 20px
+		color #616E71
+		&:hover
+			background #20282A
+			color white
+		&.selected
+			background rgb(250,250,250)
+			color #1B2224
+			
+.list
+	width 350px
+	background rgb(250,250,250)
+	overflow auto
+	.list-item
+		margin 0
+		padding 18px 25px
+		font-size 14px
+		color #242D2F
+		display block
+		text-decoration none
+		text-overflow ellipsis
+		white-space nowrap
+		overflow hidden
+		position relative
+		&:hover, &.selected
+			background rgb(240,240,240)
+		&.separator
+			border-bottom 1px solid rgb(230,230,230)
+		.list-title, .list-subtitle
+			color #242D2F
+			display block
+		.list-title
+			font-size 15px
+		.list-subtitle
+			font-size 12px
+			opacity .5
+		.list-more
+			color #E97F02
+			display inline-block
+			position absolute
+			top 18px
+			right 20px
+			
+.detail
+	padding 30px 50px
+	background white
+	overflow auto
+	.detail-title
+		margin 20px 0 5px 0
+		font-size 13px
+		display block
+
+#admin
+	
+	.sidebar, .list, .detail
+		display block
+		position absolute
+	
+	.sidebar
+		left 0
+		top 0
+		bottom 0
+		
+	.list
+		left 60px
+		top 0
+		bottom 0
+		
+	.detail
+		left 410px
+		right 0
+		top 0
+		bottom 0

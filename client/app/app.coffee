@@ -8,6 +8,21 @@ angular.module 'beepBoopWebsiteApp', [
   'btford.socket-io',
   'ui.router'
 ]
+.directive 'redactor', [ ->
+  {
+    require: '?ngModel'
+    link: (scope, element, attributes, controller) ->
+      element.redactor
+        minHeight: 300
+        maxHeight: 300
+        changeCallback: ->
+          scope.$apply ->
+            controller.$setViewValue element.val()
+      controller.$render = ->
+        $_element = angular.element element
+        $_element.redactor 'code.set', controller.$viewValue || ''
+  }
+]
 .directive 'ngFileModel', [ ->
   {
     scope: ngFileModel: '='

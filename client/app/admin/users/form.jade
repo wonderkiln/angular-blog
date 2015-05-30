@@ -1,44 +1,36 @@
-div(ng-include='"components/navbar/navbar.html"')
-
-.wrapper
-  .page.dark.no-shadow
-    .vertical-form
-      .row.group
-        label Basic info
-      .row
-        label Picture
-        //- 
-        input.value(type="file", ng-show="!photoFile && !user.photo", ng-file-model="photoFile")
-        //- 
-        .value(ng-show="photoFile && !user.photo")
-          img(ng-file-src="photoFile", height="100")
-          .right
-            a(href="javascript:", ng-click="upload()")
-              i.fa.fa-upload
-            //- a(href="javascript:", ng-click="delete()")
-            //-   i.fa.fa-times
-        //- 
-        .value(ng-show="user.photo")
-          img(src="{{user.photo}}", height="100")
-          a.right(href="javascript:", ng-click="delete()")
-            i.fa.fa-times
-      .row
-        label Name
-        input.value(type="text", placeholder="Enter a value...", ng-model="user.name")
-      .row
-        label E-mail
-        input.value(type="text", placeholder="Enter a value...", ng-model="user.email")
-      .row
-        label Password
-        input.value(type="password", placeholder="Enter a value...", ng-model="user.password")
-      .row
-        label Disabled
-        input.value(type="checkbox", ng-model="user.disabled")
-      .row
-        label Role
-        select.value(ng-model="user.role")
-          option(value="user") User
-          option(value="admin") Admin
-      .row.group
-        label
-      a.row.highlight(href="javascript:", ng-click="addUser(user)", align="center") Save changes
+.detail
+  div(ng-show="selectedUser")
+    //- 
+    img(src="{{selectedUser.photo}}", height="120", ng-hide="newPhoto")
+    img(src="{{newPhoto}}", height="120", ng-show="newPhoto")
+    //- 
+    .detail-title
+      span(ng-show="progress") Uploading... ({{progress}}%) 
+      input(type="file", onchange="angular.element(this).scope().photoFileChanged(this)")
+    //- 
+    span.detail-title Full name
+    input(type="text", ng-model="selectedUser.name")
+    //- 
+    span.detail-title E-mail
+    input(type="text", ng-model="selectedUser.email")
+    //- 
+    span.detail-title Password
+    input(type="password", ng-model="selectedUser.password")
+    //- 
+    span.detail-title Account type
+    select(ng-model="selectedUser.role")
+      option(value="user") User
+      option(value="editor") Editor
+      option(value="admin") Admin
+    //- 
+    span.detail-title Account status
+    select(ng-model="selectedUser.disabled", ng-options="o.v as o.n for o in [{ n: 'Active', v: false }, { n: 'Disabled', v: true }]")
+    //- 
+    div(ng-hide="isNewUser")
+      .detail-title
+        a.button(href="javascript:", ng-click="save(selectedUser)") Save changes
+      .detail-title
+        a.button-link(href="javascript:", ng-click="delete(selectedUser)") Delete account
+    //- 
+    .detail-title(ng-show="isNewUser")
+      a.button(href="javascript:", ng-click="register(selectedUser)") Register

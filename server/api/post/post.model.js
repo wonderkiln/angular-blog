@@ -12,7 +12,7 @@ var PostSchema = new Schema({
 	date: { type: Date, default: Date.now },
 	dateCreated: { type: Date, default: Date.now },
 	dateModified: { type: Date, default: Date.now },
-	featured: Boolean,
+	featured: { type: Boolean, default: false },
 	published: { type: Boolean, default: true },
 	gameCard: {
 		enabled: { type: Boolean, default: false },

@@ -1,5 +1,24 @@
 'use strict'
 
+getFileUrl = (file, callback) ->
+  reader = new FileReader
+  reader.onload = (loadEvent) ->
+    callback loadEvent.target.result
+  reader.readAsDataURL file
+
+uploadFile = ($scope, S3, file, callback) ->
+  if file
+    $scope.progress = 0
+    S3.upload file, (finished, progress, err, url) ->
+      $scope.$apply ->
+        if !finished
+          $scope.progress = progress
+        else
+          delete $scope.progress
+          callback url
+  else
+    callback ''
+
 angular.module 'beepBoopWebsiteApp'
 .controller 'AdminCtrl', ($scope, $http, Auth, User) ->
 
@@ -35,50 +54,90 @@ angular.module 'beepBoopWebsiteApp'
         index = $scope.users.indexOf user
         $scope.users.splice index, 1
 
-.controller 'AdminPostsCtrl', ($scope, $http, $stateParams, S3) ->
+.controller 'AdminPostsCtrl', ($scope, $http, S3) ->
 
-  $scope.result = {}
-
-  $scope.toggleRelevantGame = (checked) ->
-    alert if checked then 'YES' else 'NO'
-
-  $http.get('/api/users').success (users) ->
-    $scope.users = users
+  $scope.photoFileChanged = (input) ->
+    $scope.newPhotoFile = input.files[0]
+    getFileUrl $scope.newPhotoFile, (url) ->
+      $scope.$apply ->
+        $scope.newPhoto = url
 
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
-  url = if $stateParams.hasOwnProperty 'id' then '/api/posts/' + $stateParams.id else '/api/posts'
-  $http.get(url).success (result) ->
-    $scope.result = result
+  $http.get('/api/users').success (users) ->
+    $scope.users = users
 
-  $scope.add = (post) ->
-    $http.post '/api/posts', post
+  $scope.select = (post) ->
+    delete $scope.newPhotoFile
+    delete $scope.newPhoto
+    delete $scope.isNewPost
+    $scope.selectedPost = post
 
-  $scope.update = (post) ->
-    $http.put '/api/posts/' + post._id, post
+  $scope.create = ->
+    $scope.isNewPost = true
+    $scope.selectedPost =
+      authors: []
+      tags: []
+      gameCard:
+        platforms: []
+        relevantGameIds: []
 
-  $scope.togglePlatform = (platform) ->
-    index = $scope.result.gameCard.platforms.indexOf(platform)
-    if index == -1
-      $scope.result.gameCard.platforms.push(platform)
-    else
-      $scope.result.gameCard.platforms.splice(index, 1)
+  $scope.publish = (post) ->
+    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+      post.cover = url
+      $http.post('/api/posts', post).success (newPost) ->
+        $scope.posts.push newPost
+        $scope.selectedPost = newPost
+        delete $scope.isNewPost
 
-.controller 'AdminUsersCtrl', ($scope, $http, $window, S3) ->
+  $scope.save = (post) ->
+    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+      post.cover = url
+      $http.put '/api/posts/' + post._id, post
 
-  $scope.user = {}
+  $scope.delete = (post) ->
+    if confirm 'Delete'
+      $http.delete('/api/posts/' + post._id).success ->
+        $scope.posts.splice $scope.posts.indexOf post, 1
+        delete $scope.selectedPost
 
-  $scope.upload = ->
-    S3.upload $scope.photoFile, (finished, progress, err, url) ->
+.controller 'AdminUsersCtrl', ($scope, $http, S3) ->
+
+  $scope.photoFileChanged = (input) ->
+    $scope.newPhotoFile = input.files[0]
+    getFileUrl $scope.newPhotoFile, (url) ->
       $scope.$apply ->
-        $scope.user.photo = url if finished
+        $scope.newPhoto = url
 
-  $scope.delete = ->
-    delete $scope.photoFile
-    delete $scope.user.photo
+  $http.get('/api/users').success (users) ->
+    $scope.users = users
 
-  $scope.addUser = (user) ->
-    $http.post '/api/users', user
-    .success ->
-      $window.history.back()
+  $scope.select = (user) ->
+    delete $scope.newPhotoFile
+    delete $scope.newPhoto
+    delete $scope.isNewUser
+    $scope.selectedUser = user
+
+  $scope.create = ->
+    $scope.isNewUser = true
+    $scope.selectedUser = {}
+
+  $scope.register = (user) ->
+    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+      user.photo = url
+      $http.post('/api/users', user).success (newUser) ->
+        $scope.users.push newUser
+        $scope.selectedUser = newUser
+        delete $scope.isNewUser
+
+  $scope.save = (user) ->
+    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+      user.photo = url
+      $http.put '/api/users/' + user._id, user
+
+  $scope.delete = (user) ->
+    if confirm 'Delete'
+      $http.delete('/api/users/' + user._id).success ->
+        $scope.users.splice $scope.users.indexOf user, 1
+        delete $scope.selectedUser

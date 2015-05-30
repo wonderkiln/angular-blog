@@ -1,24 +1,11 @@
-div(ng-include='"components/navbar/navbar.html"')
-
-.wrapper
-  .page.dark.no-shadow
-    .vertical-form
-      .row
-        label
-          i.fa.fa-search
-        input.value(type="text", placeholder="Search in your users...", ng-model="filter.$")
-      a.row(href="/admin/users/add")
-        label
-          i.fa.fa-plus
-        .value Create a new user
-  .page.dark.no-shadow
-    .vertical-form
-      .row(ng-repeat="item in users | filter:filter")
-        span {{item.name}}
-        span.block(style="opacity: .5;") {{item.email}}
-        .group.right
-          a.toggle(href="javascript:", ng-click="toggleRole(item)", ng-class="{disabled: item.role != 'admin'}") {{item.role}}
-          a.toggle(href="javascript:")
-            i.fa.fa-lock
-          a.toggle(href="javascript:", ng-click="deleteUser(item)")
-            i.fa.fa-trash
+.list
+  .list-item.separator
+    input.block(type="text", placeholder="Search by name or e-mail", ng-model="filter.$")
+  a.list-item.separator(href="javascript:", ng-click="create()", ng-class="{ 'selected': isNewUser }")
+    span.list-title Register a new user
+  a.list-item(href="javascript:", ng-repeat="i in users | filter:filter", ng-click="select(i)", ng-class="{ 'selected': selectedUser == i }")
+    span.list-title {{i.name}}
+    span.list-subtitle {{i.email}}
+    span.list-more
+      i.fa.fa-star(ng-show="i.role == 'admin' && !i.disabled")
+      i.fa.fa-exclamation-circle(ng-show="i.disabled")

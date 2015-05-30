@@ -9,4 +9,4 @@ div.wrapper(style="width: 802px;")
 					h1
 						i(ng-repeat="platform in post.platforms", class="fa fa-{{platform}}", style="margin-right: 10px;")
 				h1 {{post.title}}
-				p {{post.content | limitTo: 100}}...
+				p(ng-bind-html="post.content | limitTo: 200")

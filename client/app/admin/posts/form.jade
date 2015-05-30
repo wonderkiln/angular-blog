@@ -1,128 +1,45 @@
-div(ng-include='"components/navbar/navbar.html"')
-
-.wrapper
-	.page.dark.no-shadow
-		.vertical-form
-
-			//- Group
-			.row.group
-				label Basic info
-			.row
-				label Title
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.title")
-			.row
-				label Content
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.content")
-			.row
-				label Cover
-				//- 
-				input.value(type="file", ng-show="!coverFile  && !result.cover", ng-file-model="coverFile")
-				//- 
-				.value(ng-show="coverFile && !result.cover")
-					img(src="{{coverFile}}", height="100")
-					a.right(href="javascript:", ng-click="upload()")
-						i.fa.fa-upload
-				//- 
-				.value(ng-show="result.cover")
-					img(src="{{result.cover}}", height="100")
-					a.right(href="javascript:", ng-click="delete()")
-						i.fa.fa-times
-			.row
-				label Date Published
-				input.value(type="date", ng-model="result.date")
-			.row
-				label Options
-				.value.group
-					a.toggle(href="javascript:", ng-class="{disabled: !result.featured}", ng-click="result.featured = !result.featured") Featured
-					a.toggle(href="javascript:", ng-class="{disabled: !result.pub.published}", ng-click="result.pub.published = !result.pub.published") Published
-					a.toggle(href="javascript:", ng-class="{disabled: !result.gameCard.enabled}", ng-click="result.gameCard.enabled = !result.gameCard.enabled") Game Card
-
-			//- Group
-			.row.group
-				label Post authors
-			.row
-				label
-				.value
-					a.toggle(href="javascript:", ng-repeat="i in result.authors", ng-click="result.authors.splice(result.authors.indexOf(i), 1);") {{i.name}}
-			.row
-				label Select a user
-				span.value.custom
-					a.toggle(href="javascript:", ng-repeat="user in users", ng-click="result.authors.push(user)") {{user.name}}
-			
-			//- Group
-			.row.group
-				label Post tags
-			.row
-				label Tags
-				.value
-					a.toggle(href="javascript:", ng-repeat="i in result.tags", ng-click="result.tags.splice(result.tags.indexOf(i), 1);") {{i}}
-			.row
-				form(ng-submit="result.tags.push(newTagName)")
-					label
-					input.value(type="text", placeholder="Enter a new tag...", ng-model="newTagName")
-
-			//- Group
-			.row.group(ng-show="result.gameCard.enabled")
-				label Game Card
-			.row(ng-show="result.gameCard.enabled")
-				label Game Name
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.gameName")
-			.row(ng-show="result.gameCard.enabled")
-				label Publisher
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.pub.rowsher")
-			.row(ng-show="result.gameCard.enabled")
-				label Developer
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.developer")
-			.row(ng-show="result.gameCard.enabled")
-				label Platforms
-				.value.group(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'OSX', 'Windows', 'Linux']")
-					a.toggle(href="javascript:", ng-repeat="i in platforms", ng-class="{disabled: result.gameCard.platforms.indexOf(i) == -1}", ng-click="togglePlatform(i)") {{i}}
-			.row(ng-show="result.gameCard.enabled")
-				label Price
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.price")
-			.row(ng-show="result.gameCard.enabled")
-				label Website
-				input.value(type="text", placeholder="Enter a value...", ng-model="result.gameCard.website")
-			.row(ng-show="result.gameCard.enabled")
-				label Social
-				.value
-					.block
-						| Facebook
-						br
-						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.facebook")
-					.block
-						| Twitter
-						br
-						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.twitter")
-					.block
-						| Google+
-						br
-						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.google")
-					.block
-						| Pinterest
-						br
-						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.pinterest")
-					.block
-						| Instagram
-						br
-						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.instagram")
-					.block
-						| Youtube
-						br
-						input.value(placeholder="Enter a value...", ng-model="result.gameCard.social.youtube")
-			.row(ng-show="result.gameCard.enabled")
-				label Release Date
-				input.value(type="date", placeholder="Enter a value...", ng-model="result.gameCard.releaseDate")
-			.row(ng-show="result.gameCard.enabled")
-				label Relevant games
-				.value
-					input.toggle.block(type="text", placeholder="Filter...", ng-model="filterRelevant.$")
-					.block(style="margin-top: 10px; max-height: 200px; overflow: auto;")
-						.toggle.block(ng-repeat="i in posts | filter:filterRelevant", style="margin-bottom: 1px;", ng-click="i.checked = !i.checked", ng-class="{ disabled: !i.checked }") {{i.title}}
-							//- input(type="checkbox", ng-model="i.checked" ng-change="toggleRelevantGame(i.checked)")
-							//- |  {{i.title}}
-
-			//- Group
-			.row.group
-				label
-			a.row.highlight.option.block(href="javascript:", align="center", ng-click="update(result)") Save changes
+.detail
+  div(ng-show="selectedPost")
+    //- 
+    textarea(ng-model="selectedPost.content", redactor)
+    //- 
+    img(src="{{selectedPost.cover}}", height="120", ng-hide="newPhoto")
+    img(src="{{newPhoto}}", height="120", ng-show="newPhoto")
+    //- 
+    .detail-title
+      span(ng-show="progress") Uploading... ({{progress}}%) 
+      input(type="file", onchange="angular.element(this).scope().photoFileChanged(this)")
+    //- 
+    span.detail-title Title
+    input(type="text", ng-model="selectedPost.title")
+    //- 
+    span.detail-title Date
+    input(type="date", ng-model="selectedPost.date")
+    //- 
+    span.detail-title Authors
+    span.tag(ng-repeat="i in selectedPost.authors") {{i.name}}
+    form(ng-submit="selectedPost.authors.push(newAuthor)", novalidate)
+      input(type="text", ng-model="newAuthor", placeholder="Type new author...")
+    //- 
+    span.detail-title Tags
+    span.tag(ng-repeat="i in selectedPost.tags") {{i}}
+    form(ng-submit="selectedPost.tags.push(newTag)", novalidate)
+      input(type="text", ng-model="newTag", placeholder="Type new tag...")
+    //- 
+    span.detail-title Featured
+    select(ng-model="selectedPost.featured", ng-options="o.v as o.n for o in [{ n: 'Not featured', v: false }, { n: 'Featured', v: true }]")
+    //- 
+    span.detail-title Published
+    select(ng-model="selectedPost.published", ng-options="o.v as o.n for o in [{ n: 'Not published', v: false }, { n: 'Published', v: true }]")
+    //- 
+    span.detail-title Game Card
+    select(ng-model="selectedPost.gameCard.enabled", ng-options="o.v as o.n for o in [{ n: 'Without game card', v: false }, { n: 'With game card', v: true }]")
+    //- 
+    div(ng-hide="isNewPost")
+      .detail-title
+        a.button(href="javascript:", ng-click="save(selectedPost)") Save changes
+      .detail-title
+        a.button-link(href="javascript:", ng-click="delete(selectedPost)") Delete post
+    //- 
+    .detail-title(ng-show="isNewPost")
+      a.button(href="javascript:", ng-click="publish(selectedPost)") Add post

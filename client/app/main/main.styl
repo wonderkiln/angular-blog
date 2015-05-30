@@ -1,4 +1,4 @@
-input
+input[type="text"], input[type="password"], input[type="date"], select, .input
     padding 12px 20px
     background white
     border 1px solid rgb(220,220,220)
@@ -16,9 +16,9 @@ button
     &:hover
         background $highlight_dark
 
-.block
-    width 100%
-    display block
+// .block
+//     width 100%
+//     display block
 
 #register
     h3
@@ -132,8 +132,7 @@ p
     color: rgb(50,50,50)
     &.dark
         background $dark_bg
-        *
-            color $dark_color
+        color $dark_color
     &.no-shadow
         margin-bottom 5px
         box-shadow none
