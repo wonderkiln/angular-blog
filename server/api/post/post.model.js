@@ -25,10 +25,13 @@ var PostSchema = new Schema({
 		social: {
 			facebook: String,
 			twitter: String,
-			youtube: String
+			google: String,
+			pinterest: String,
+			instagram: String,
+			youtube: String,
 		},
 		releaseDate: Date,
-		relevantGameIds: []
+		relevantGames: []
 	}
 });
 

@@ -23,6 +23,16 @@ angular.module 'beepBoopWebsiteApp', [
         $_element.redactor 'code.set', controller.$viewValue || ''
   }
 ]
+.directive 'jsonStringToDate', [ ->
+  {
+    restrict: 'A'
+    require: 'ngModel'
+    link: (scope, element, attributes, controller) ->
+      jsonStrToDate = (str) ->
+        new Date str
+      controller.$formatters.push jsonStrToDate
+  }
+]
 .directive 'ngFileModel', [ ->
   {
     scope: ngFileModel: '='

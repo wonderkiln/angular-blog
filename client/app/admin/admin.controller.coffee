@@ -20,41 +20,20 @@ uploadFile = ($scope, S3, file, callback) ->
     callback ''
 
 angular.module 'beepBoopWebsiteApp'
-.controller 'AdminCtrl', ($scope, $http, Auth, User) ->
-
-  $http.get('/api/posts').success (posts) ->
-    $scope.posts = posts
-
-  $http.get('/api/users').success (users) ->
-    $scope.users = users
-
-  $scope.toggleFeatured = (post) ->
-    post.featured = !post.featured
-    $http.put '/api/posts/' + post._id, post
-
-  $scope.togglePublished = (post) ->
-    post.published = !post.published
-    $http.put '/api/posts/' + post._id, post
-
-  $scope.deletePost = (post) ->
-    if confirm 'Delete'
-      $http.delete '/api/posts/' + post._id
-      .success ->
-        index = $scope.posts.indexOf post
-        $scope.posts.splice index, 1
-
-  $scope.toggleRole = (user) ->
-    user.role = if user.role == 'admin' then 'user' else 'admin'
-    $http.put '/api/users/' + user._id + '/role', user
-
-  $scope.deleteUser = (user) ->
-    if confirm 'Delete'
-      $http.delete '/api/users/' + user._id
-      .success ->
-        index = $scope.users.indexOf user
-        $scope.users.splice index, 1
-
 .controller 'AdminPostsCtrl', ($scope, $http, S3) ->
+
+  $scope.removeFromList = (list, item) ->
+    list.splice list.indexOf item, 1
+
+  $scope.addToList = (list, item) ->
+    list.push item
+
+  $scope.toggleItemInList = (list, item) ->
+    index = list.indexOf item
+    if index == -1
+      list.push item
+    else
+      list.splice index, 1
 
   $scope.photoFileChanged = (input) ->
     $scope.newPhotoFile = input.files[0]
@@ -90,11 +69,13 @@ angular.module 'beepBoopWebsiteApp'
         $scope.posts.push newPost
         $scope.selectedPost = newPost
         delete $scope.isNewPost
+        alert 'success'
 
   $scope.save = (post) ->
     uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
       post.cover = url
-      $http.put '/api/posts/' + post._id, post
+      $http.put('/api/posts/' + post._id, post).success ->
+        alert 'success'
 
   $scope.delete = (post) ->
     if confirm 'Delete'

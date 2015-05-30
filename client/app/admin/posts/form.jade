@@ -14,16 +14,17 @@
     input(type="text", ng-model="selectedPost.title")
     //- 
     span.detail-title Date
-    input(type="date", ng-model="selectedPost.date")
+    input(type="date", ng-model="selectedPost.date", json-string-to-date)
     //- 
     span.detail-title Authors
-    span.tag(ng-repeat="i in selectedPost.authors") {{i.name}}
-    form(ng-submit="selectedPost.authors.push(newAuthor)", novalidate)
-      input(type="text", ng-model="newAuthor", placeholder="Type new author...")
+    .block
+      a.tag(href="javascript:", ng-repeat="i in selectedPost.authors", ng-click="removeFromList(selectedPost.authors, i)") {{i.name}}
+    .block
+      a.tag(href="javascript:", ng-repeat="i in users", ng-click="addToList(selectedPost.authors, i)") {{i.name}}
     //- 
     span.detail-title Tags
-    span.tag(ng-repeat="i in selectedPost.tags") {{i}}
-    form(ng-submit="selectedPost.tags.push(newTag)", novalidate)
+    a.tag(href="javascript:", ng-repeat="i in selectedPost.tags", ng-click="removeFromList(selectedPost.tags, i)") {{i}}
+    form(ng-submit="addToList(selectedPost.tags, newTag)", novalidate)
       input(type="text", ng-model="newTag", placeholder="Type new tag...")
     //- 
     span.detail-title Featured
@@ -34,6 +35,52 @@
     //- 
     span.detail-title Game Card
     select(ng-model="selectedPost.gameCard.enabled", ng-options="o.v as o.n for o in [{ n: 'Without game card', v: false }, { n: 'With game card', v: true }]")
+    //- 
+    div(ng-show="selectedPost.gameCard.enabled")
+      //- 
+      span.detail-title Game Name
+      input(type="text", ng-model="selectedPost.gameCard.gameName")
+      //- 
+      span.detail-title Publisher
+      input(type="text", ng-model="selectedPost.gameCard.publisher")
+      //- 
+      span.detail-title Developer
+      input(type="text", ng-model="selectedPost.gameCard.developer")
+      //- 
+      span.detail-title(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'Windows', 'OSX', 'Linux']") Platforms
+      a(href="javascript:", ng-repeat="i in platforms", ng-click="toggleItemInList(selectedPost.gameCard.platforms, i)", ng-class="{ 'tag': selectedPost.gameCard.platforms.indexOf(i) != -1 }") {{i}}
+      //- 
+      span.detail-title Price
+      input(type="text", ng-model="selectedPost.gameCard.price")
+      //- 
+      span.detail-title Website
+      input(type="text", ng-model="selectedPost.gameCard.website")
+      //- 
+      span.detail-title Social
+      .block
+        input(type="text", ng-model="selectedPost.gameCard.social.facebook")
+        |  - facebook
+      .block
+        input(type="text", ng-model="selectedPost.gameCard.social.twitter")
+        |  - twitter
+      .block
+        input(type="text", ng-model="selectedPost.gameCard.social.google")
+        |  - google
+      .block
+        input(type="text", ng-model="selectedPost.gameCard.social.pinterest")
+        |  - pinterest
+      .block
+        input(type="text", ng-model="selectedPost.gameCard.social.instagram")
+        |  - instagram
+      .block
+        input(type="text", ng-model="selectedPost.gameCard.social.youtube")
+        |  - youtube
+      //- 
+      span.detail-title Release Date
+      input(type="date", ng-model="selectedPost.gameCard.releaseDate", json-string-to-date)
+      //- 
+      span.detail-title Relevant Games
+      input(type="text", ng-model="selectedPost.gameCard.relevantGames")
     //- 
     div(ng-hide="isNewPost")
       .detail-title
