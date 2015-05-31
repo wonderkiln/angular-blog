@@ -35,6 +35,20 @@ exports.create = function (req, res, next) {
   });
 };
 
+/**
+ * Registers a new user
+ */
+exports.register = function (req, res, next) {
+  var newUser = new User(req.body);
+  newUser.provider = 'local';
+  newUser.role = 'user';
+  newUser.save(function(err, user) {
+    if (err) return validationError(res, err);
+    // var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
+    res.json(200, user);
+  });
+};
+
 // Updates an existing user in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
@@ -70,26 +84,6 @@ exports.destroy = function(req, res) {
   User.findByIdAndRemove(req.params.id, function(err, user) {
     if(err) return res.send(500, err);
     return res.send(204);
-  });
-};
-
-/**
- * Change a users role
- */
-exports.changeRole = function(req, res, next) {
-  var userId = req.params.id;
-  var role = String(req.body.role);
-
-  User.findById(userId, function (err, user) {
-    user.role = role;
-    user.save(function(err) {
-      if (err) return validationError(res, err);
-      res.send(200);
-    });
-  });
-
-  User.findById(userId, function (err, user) {
-    console.log(user);
   });
 };
 

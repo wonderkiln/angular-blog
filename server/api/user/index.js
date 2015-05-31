@@ -7,13 +7,16 @@ var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
+// Private
 router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
-router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id', auth.hasRole('admin'), controller.update);
-router.put('/:id/role', auth.hasRole('admin'), controller.changeRole);
-router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
-router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', auth.hasRole('admin'), controller.create);
+
+// Public
+router.get('/me', auth.isAuthenticated(), controller.me);
+router.get('/:id', auth.isAuthenticated(), controller.show);
+router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+router.post('/register', controller.register);
 
 module.exports = router;

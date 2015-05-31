@@ -1,15 +1,10 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.wrapper
-  .page.dark.no-shadow
-    form.vertical-form(ng-submit='login()', novalidate='')
-      .row.group
-        label Login
-      .row
-        label Email
-        input.value(type='text', placeholder='Your e-mail', ng-model='user.email')
-      .row
-        label Password
-        input.value(type='password', placeholder='Your password', ng-model='user.password')
-      .row
-        button(type="submit") Login
+.wrapper(style="width: 300px;")
+    form(ng-submit='login()', novalidate)
+      p Email
+      input.block(type='text', placeholder='Your e-mail', ng-model='user.email')
+      p Password
+      input.block(type='password', placeholder='Your password', ng-model='user.password')
+      p
+      button(type="submit") Login

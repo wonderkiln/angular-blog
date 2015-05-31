@@ -5,7 +5,7 @@
     span.list-title Create a new blog post
   a.list-item(href="javascript:", ng-repeat="i in posts | filter:filter", ng-click="select(i)", ng-class="{ 'selected': selectedPost == i }")
     span.list-title {{i.title}}
-    span.list-subtitle {{i.date}}
+    span.list-subtitle {{i.date | date:'MMM dd, yyyy'}}
     span.list-more
       i.fa.fa-star(ng-show="i.featured && i.published")
       i.fa.fa-exclamation-circle(ng-show="!i.published")

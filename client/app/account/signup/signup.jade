@@ -1,30 +1,23 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.wrapper
-  form#register.page(novalidate, ng-submit="register(user)")
-    .wrapper-small(style="padding: 80px 0;")
-      h1 Welcome traveler
-      div(style="width: 300px; display: inline-block;")
-        h3 Your name
-        input.block(type="text", placeholder="Joe Doe", ng-model="user.name")
-        h3 Your e-mail
-        input.block(type="text", placeholder="joe.doe@provider.com", ng-model="user.email")
-      div(style="width: 150px; display: inline-block; padding-left: 20px; vertical-align: top;")
-        h3 Picture
-        a.block(href="javascript:")
-          img(ng-file-src="pictureFile", width="130", height="130", style="display: block;")
-      h3 Upload a picture
-      input.block(type="file", ng-file-model="pictureFile")
-      h3 Password
+.wrapper(style="width: 300px;")
+  form(ng-submit="register(user)", novalidate)
+    div(style="margin-top: 20px;")
+      img(src="http://lorempixel.com/g/200/200", height="130")
+      input.block(type="file")
+    div(style="margin-top: 20px;")
+      p Your name
+      input.block(type="text", ng-model="user.name")
+    div(style="margin-top: 20px;")
+      p Your e-mail
+      input.block(type="text", ng-model="user.email")
+    div(style="margin-top: 20px;")
+      p Password
       input.block(type="password", ng-model="user.password")
-      h3 Repeat password
-      input.block(type="password", ng-model="user.password2")
-      .block.error(ng-if="error")
-        i.fa.fa-exclamation-circle
-        |  The username or password are not corrent. Please try again...
-      .block(style="margin: 30px 0;")
-        input(type="checkbox", ng-model="agree")
-        |  I agree to BeepBoop 
-        a(href="#") terms and conditions
-        | .
-      button(type="submit", ng-disabled="agree") Register
+    div(style="margin-top: 20px;")
+      input(type="checkbox", ng-model="agree")
+      |  I agree to 
+      a(href="#") terms and conditions
+      | .
+    div(style="margin-top: 20px;")
+      button(type="submit", ng-disabled="agree", ng-click="register(user)") Signup

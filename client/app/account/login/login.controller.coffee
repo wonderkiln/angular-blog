@@ -8,10 +8,9 @@ angular.module 'beepBoopWebsiteApp'
     password: 'admin'
 
   $scope.login = ->
-    Auth.login
-      email: $scope.user.email
-      password: $scope.user.password
+    Auth.login $scope.user
     .then ->
       $location.path '/'
+      window.location.reload()
     .catch (err) ->
-      alert err
+      alert err.message

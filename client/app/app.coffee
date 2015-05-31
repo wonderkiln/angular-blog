@@ -72,11 +72,15 @@ angular.module 'beepBoopWebsiteApp', [
     config
 
   # Intercept 401s and redirect you to login
+  # Also intercept 403s and display an error
+  # or redirect you to the home page
   responseError: (response) ->
     if response.status is 401
       $location.path '/login'
       # remove any stale tokens
       $cookieStore.remove 'token'
+    else if response.status is 403
+      $location.path '/'
 
     $q.reject response
 

@@ -22,22 +22,16 @@
             i.fa.fa-bars
           ul#login.dropdown
             li
-              label Username
-              input(type="text", ng-model="user.email")
+              a(href="/login") Login
             li
-              label Password
-              input(type="password", ng-model="user.password")
-            li
-              a(href="javascript:", ng-click="login(user)") Login
-            li
-              a(href="/signup") Don't have an account? Register
+              a(href="/signup") Signup
         li(ng-if="isLoggedIn")
           a(href="javascript:")
             i.fa.fa-bars
           ul.dropdown
-            li
-              a(href="/admin/posts") Manage posts
-            li
-              a(href="/admin/users") Manage users
+            li(ng-if="!isAdmin")
+              a(href="/settings") Profile
+            li(ng-if="isAdmin")
+              a(href="/admin/posts") Administration
             li
               a(href="javascript:", ng-click="logout()") Logout
