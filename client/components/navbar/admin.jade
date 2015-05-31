@@ -1,9 +1,13 @@
 .sidebar(ng-controller='NavbarCtrl')
   a.sidebar-item(href="/")
     i.fa.fa-home
+    span.hover Home
   a.sidebar-item(href="/admin/posts", ng-class="{ 'selected': isActive('/posts') }")
     i.fa.fa-pencil
+    span.hover Posts
   a.sidebar-item(href="/admin/users", ng-class="{ 'selected': isActive('/users') }")
     i.fa.fa-user
+    span.hover Users
   a.sidebar-item.bottom(href="javascript:", ng-click="logout()")
     i.fa.fa-unlock
+    span.hover Logout

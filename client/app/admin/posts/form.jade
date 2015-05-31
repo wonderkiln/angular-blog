@@ -20,7 +20,7 @@
     .block
       a.tag(href="javascript:", ng-repeat="i in selectedPost.authors", ng-click="removeFromList(selectedPost.authors, i)") {{i.name}}
     .block
-      a.tag(href="javascript:", ng-repeat="i in users", ng-click="addToList(selectedPost.authors, i)") {{i.name}}
+      a.tag.disabled(href="javascript:", ng-repeat="i in users", ng-click="addToList(selectedPost.authors, i)") {{i.name}}
     //- 
     span.detail-title Tags
     a.tag(href="javascript:", ng-repeat="i in selectedPost.tags", ng-click="removeFromList(selectedPost.tags, i)") {{i}}
@@ -48,7 +48,7 @@
       input(type="text", ng-model="selectedPost.gameCard.developer")
       //- 
       span.detail-title(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'Windows', 'OSX', 'Linux']") Platforms
-      a(href="javascript:", ng-repeat="i in platforms", ng-click="toggleItemInList(selectedPost.gameCard.platforms, i)", ng-class="{ 'tag': selectedPost.gameCard.platforms.indexOf(i) != -1 }") {{i}}
+      a.tag(href="javascript:", ng-repeat="i in platforms", ng-click="toggleItemInList(selectedPost.gameCard.platforms, i)", ng-class="{ 'disabled': selectedPost.gameCard.platforms.indexOf(i) == -1 }") {{i}}
       //- 
       span.detail-title Price
       input(type="text", ng-model="selectedPost.gameCard.price")
@@ -58,23 +58,23 @@
       //- 
       span.detail-title Social
       .block
+        span.detail-title Facebook
         input(type="text", ng-model="selectedPost.gameCard.social.facebook")
-        |  - facebook
       .block
+        span.detail-title Twitter
         input(type="text", ng-model="selectedPost.gameCard.social.twitter")
-        |  - twitter
       .block
+        span.detail-title Google
         input(type="text", ng-model="selectedPost.gameCard.social.google")
-        |  - google
       .block
+        span.detail-title Pinterest
         input(type="text", ng-model="selectedPost.gameCard.social.pinterest")
-        |  - pinterest
       .block
+        span.detail-title Instagram
         input(type="text", ng-model="selectedPost.gameCard.social.instagram")
-        |  - instagram
       .block
+        span.detail-title Youtube
         input(type="text", ng-model="selectedPost.gameCard.social.youtube")
-        |  - youtube
       //- 
       span.detail-title Release Date
       input(type="date", ng-model="selectedPost.gameCard.releaseDate", json-string-to-date)

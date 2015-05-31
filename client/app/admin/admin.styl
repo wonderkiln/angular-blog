@@ -5,43 +5,45 @@ input, select
 	margin 0 2px 2px 0
 	padding 5px 12px
 	display inline-block
-	background #5093E1
+	background #556F79
 	border-radius 20px
 	border none
 	outline none
 	font-size 13px
 	color white
 	text-decoration none
+	&.disabled
+		background alpha(#556F79, .2)
 
-.button
-	margin 0
-	padding 10px 18px
-	display inline-block
-	background #5093E1
-	border none
-	outline none
-	font-size 13px
-	color white
-	text-decoration none
-.button-link
-	font-size 13px
-	color #5093E1
-	text-decoration none
-	display block
+// .button
+// 	margin 0
+// 	padding 10px 18px
+// 	display inline-block
+// 	background #5093E1
+// 	border none
+// 	outline none
+// 	font-size 13px
+// 	color white
+// 	text-decoration none
+// .button-link
+// 	font-size 13px
+// 	color #5093E1
+// 	text-decoration none
+// 	display block
 
 .block
 		width 100%
 		display block
 
 .bottom
-	position absolute
+	position absolute !important
 	bottom 0
 	left 0
 	right 0
 	
 .sidebar
 	width 60px
-	background #1B2224
+	background #273238
 	.sidebar-item
 		width 60px
 		height 60px
@@ -49,23 +51,49 @@ input, select
 		text-align center
 		line-height 60px
 		font-size 20px
-		color #616E71
-		&:hover
-			background #20282A
+		color #556F79
+		position relative
+		z-index 100
+		.hover
+			padding 0
+			padding-right 30px
+			background #273238
+			border-radius 0 30px 30px 0
+			line-height 60px
+			font-size 13px
 			color white
+			text-align left
+			text-transform uppercase
+			position absolute
+			left 100%
+			right auto
+			top 0
+			bottom 0
+			opacity 0
+			transform translateX(-10px)
+			-webkit-transform translateX(-10px)
+			transition all linear .2s
+		&:hover
+			color white
+			.hover
+				opacity 1
+				transform translateX(0)
+				-webkit-transform translateX(0)
 		&.selected
-			background rgb(250,250,250)
-			color #1B2224
+			box-shadow 3px 0 0 #83CBC4 inset
+			color white
 			
 .list
 	width 350px
-	background rgb(250,250,250)
+	// background rgb(250,250,250)
+	background white
+	border-right 1px solid rgb(230,230,230)
 	overflow auto
 	.list-item
 		margin 0
 		padding 18px 25px
 		font-size 14px
-		color #242D2F
+		color #273238
 		display block
 		text-decoration none
 		text-overflow ellipsis
@@ -77,15 +105,15 @@ input, select
 		&.separator
 			border-bottom 1px solid rgb(230,230,230)
 		.list-title, .list-subtitle
-			color #242D2F
+			color #273238
 			display block
 		.list-title
-			font-size 15px
+			font-size 14px
 		.list-subtitle
 			font-size 12px
 			opacity .5
 		.list-more
-			color #E97F02
+			color #83CBC4
 			display inline-block
 			position absolute
 			top 18px

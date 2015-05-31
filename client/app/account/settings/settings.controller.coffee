@@ -2,7 +2,10 @@
 
 angular.module 'beepBoopWebsiteApp'
 .controller 'SettingsCtrl', ($scope, User, Auth) ->
+
+  $scope.currentUser = Auth.getCurrentUser()
   $scope.errors = {}
+
   $scope.changePassword = (form) ->
     $scope.submitted = true
 
