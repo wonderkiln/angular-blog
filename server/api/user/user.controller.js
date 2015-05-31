@@ -50,7 +50,7 @@ exports.register = function (req, res, next) {
 };
 
 // Updates an existing user in the DB.
-exports.update = function(req, res) {
+exports.update = function(req, res, next) {
   if(req.body._id) { delete req.body._id; }
   User.findById(req.params.id, function (err, user) {
     if (err) { return next(res, err); }
