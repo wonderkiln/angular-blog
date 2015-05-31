@@ -22,16 +22,26 @@
             i.fa.fa-bars
           ul#login.dropdown
             li
-              a(href="/login") Login
+              a(href="/login")
+                i.fa.fa-sign-in.icon-left
+                | Login
             li
-              a(href="/signup") Signup
+              a(href="/signup")
+                i.fa.fa-pencil.icon-left
+                | Signup
         li(ng-if="isLoggedIn")
           a(href="javascript:")
             i.fa.fa-bars
           ul.dropdown
             li(ng-if="!isAdmin")
-              a(href="/settings") Profile
+              a(href="/settings")
+                i.fa.fa-user.icon-left
+                | Profile
             li(ng-if="isAdmin")
-              a(href="/admin/posts") Administration
+              a(href="/admin/posts")
+                i.fa.fa-th.icon-left
+                | Administration
             li
-              a(href="javascript:", ng-click="logout()") Logout
+              a(href="javascript:", ng-click="logout()")
+                i.fa.fa-sign-out.icon-left
+                | Logout

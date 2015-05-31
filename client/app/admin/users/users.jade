@@ -1,11 +1,25 @@
 .list
-  .list-item.separator
-    input.block(type="text", placeholder="Search by name or e-mail", ng-model="filter.$")
-  a.list-item.separator(href="javascript:", ng-click="create()", ng-class="{ 'selected': isNewUser }")
-    span.list-title Register a new user
-  a.list-item(href="javascript:", ng-repeat="i in users | filter:filter", ng-click="select(i)", ng-class="{ 'selected': selectedUser == i }")
+  .list-item
+    input.block(type="text", placeholder="Search by name or e-mail", ng-model="filter.$", style="min-width: 0; width: 95%;")
+    span.list-more.drop(style="top: 28px;")
+      i.fa.fa-ellipsis-v
+      ul.dropdown
+        li
+          a(href="javascript:", ng-click="filter.role = undefined") All
+        li
+          a(href="javascript:", ng-click="filter.role = 'admin'") Only admins
+        li
+          a(href="javascript:", ng-click="filter.role = '!admin'") Only users
+        li.separator
+        li
+          a(href="javascript:", ng-click="create()") Register user
+  .list-item(ng-repeat="i in users | filter:filter", ng-class="{ 'selected': selectedUser == i }")
     span.list-title {{i.name}}
     span.list-subtitle {{i.email}}
-    span.list-more
-      i.fa.fa-star(ng-show="i.role == 'admin' && !i.disabled")
-      i.fa.fa-exclamation-circle(ng-show="i.disabled")
+    span.list-more.drop
+      i.fa.fa-ellipsis-v
+      ul.dropdown
+        li
+          a(href="javascript:", ng-click="select(i)") Edit
+        li
+          a(href="javascript:", ng-click="delete(i)") Delete

@@ -23,9 +23,10 @@
       a.tag.disabled(href="javascript:", ng-repeat="i in users", ng-click="addToList(selectedPost.authors, i)") {{i.name}}
     //- 
     span.detail-title Tags
-    a.tag(href="javascript:", ng-repeat="i in selectedPost.tags", ng-click="removeFromList(selectedPost.tags, i)") {{i}}
     form(ng-submit="addToList(selectedPost.tags, newTag)", novalidate)
       input(type="text", ng-model="newTag", placeholder="Type new tag...")
+    .detail-title
+      a.tag(href="javascript:", ng-repeat="i in selectedPost.tags", ng-click="removeFromList(selectedPost.tags, i)") {{i}}
     //- 
     span.detail-title Featured
     select(ng-model="selectedPost.featured", ng-options="o.v as o.n for o in [{ n: 'Not featured', v: false }, { n: 'Featured', v: true }]")
@@ -82,11 +83,8 @@
       span.detail-title Relevant Games
       input(type="text", ng-model="selectedPost.gameCard.relevantGames")
     //- 
-    div(ng-hide="isNewPost")
-      .detail-title
-        a.button(href="javascript:", ng-click="save(selectedPost)") Save changes
-      .detail-title
-        a.button-link(href="javascript:", ng-click="delete(selectedPost)") Delete post
+    .detail-title(ng-hide="isNewPost")
+      a.button(href="javascript:", ng-click="save(selectedPost)") Save changes
     //- 
     .detail-title(ng-show="isNewPost")
       a.button(href="javascript:", ng-click="publish(selectedPost)") Add post

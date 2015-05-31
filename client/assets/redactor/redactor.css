@@ -148,8 +148,9 @@ body .redactor-box-fullscreen {
   font-size: 14px !important;
   line-height: 1 !important;
   background: #fff;
-  border: none;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border: 1px solid #EEEEEE;
+  border-bottom: none;
+  /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);*/
 }
 .redactor-toolbar:after {
   content: "";
