@@ -20,7 +20,7 @@
     .block
       a.tag(href="javascript:", ng-repeat="i in selectedPost.authors", ng-click="removeFromList(selectedPost.authors, i)") {{i.name}}
     .block
-      a.tag.disabled(href="javascript:", ng-repeat="i in users", ng-click="addToList(selectedPost.authors, i)") {{i.name}}
+      a.tag.disabled(href="javascript:", ng-repeat="i in users | filter:{ role: 'admin' }", ng-click="addToList(selectedPost.authors, i)") {{i.name}}
     //- 
     span.detail-title Tags
     form(ng-submit="addToList(selectedPost.tags, newTag)", novalidate)
@@ -81,7 +81,11 @@
       input(type="date", ng-model="selectedPost.gameCard.releaseDate", json-string-to-date)
       //- 
       span.detail-title Relevant Games
-      input(type="text", ng-model="selectedPost.gameCard.relevantGames")
+      .block
+        a.tag(href="javascript:", ng-repeat="i in selectedPost.gameCard.relevantGames", ng-click="removeFromList(selectedPost.gameCard.relevantGames, i)") {{i.title}}
+      .block
+        //-  | filter:{ gameCard.enabled: true }
+        a.tag.disabled(href="javascript:", ng-repeat="i in relevant", ng-click="addToList(selectedPost.gameCard.relevantGames, i)") {{i.title}}
     //- 
     .detail-title(ng-hide="isNewPost")
       a.button(href="javascript:", ng-click="save(selectedPost)") Save changes

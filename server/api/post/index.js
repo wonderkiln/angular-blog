@@ -14,6 +14,8 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 
 // Public
 router.get('/', controller.index);
+router.get('/:fields', controller.index);
+// TODO: get '/gameCard = true' -> get all posts that have a game card...
 router.get('/:id', controller.show);
 
 module.exports = router;

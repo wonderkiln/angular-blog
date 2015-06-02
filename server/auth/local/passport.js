@@ -15,6 +15,9 @@ exports.setup = function (User, config) {
         if (!user) {
           return done(null, false, { message: 'This email is not registered.' });
         }
+        if (user.disabled) {
+          return done(null, false, { message: 'This account is disabled.' }); 
+        }
         if (!user.authenticate(password)) {
           return done(null, false, { message: 'This password is not correct.' });
         }

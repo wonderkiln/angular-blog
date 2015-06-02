@@ -9,6 +9,8 @@ var router = express.Router();
 
 // Private
 router.get('/', auth.hasRole('admin'), controller.index);
+router.get('/fields/:fields', auth.hasRole('admin'), controller.index);
+// TODO: get '/:role?' -> all users that have the role...
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.put('/:id', auth.hasRole('admin'), controller.update);
 router.post('/', auth.hasRole('admin'), controller.create);

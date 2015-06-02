@@ -44,7 +44,11 @@ angular.module 'beepBoopWebsiteApp'
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
-  $http.get('/api/users').success (users) ->
+  $http.get('/api/posts/title').success (relevant) ->
+    $scope.relevant = relevant
+
+  $http.get('/api/users/fields/name,role').success (users) ->
+    console.log users
     $scope.users = users
 
   $scope.select = (post) ->
@@ -72,6 +76,7 @@ angular.module 'beepBoopWebsiteApp'
         alert 'success'
 
   $scope.save = (post) ->
+    console.log post
     uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
       post.cover = url
       $http.put('/api/posts/' + post._id, post).success ->
