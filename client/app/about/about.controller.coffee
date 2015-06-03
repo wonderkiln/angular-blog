@@ -1,6 +1,7 @@
 'use strict'
 
 angular.module 'beepBoopWebsiteApp'
-.controller 'AboutCtrl', ($scope) ->
+.controller 'AboutCtrl', ($scope, $http) ->
 
-  # TODO
+  $http.get('/api/pages/about').success (page) ->
+    $scope.page = page

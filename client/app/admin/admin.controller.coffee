@@ -48,7 +48,6 @@ angular.module 'beepBoopWebsiteApp'
     $scope.relevant = relevant
 
   $http.get('/api/users/fields/name,role').success (users) ->
-    console.log users
     $scope.users = users
 
   $scope.select = (post) ->
@@ -76,7 +75,6 @@ angular.module 'beepBoopWebsiteApp'
         alert 'success'
 
   $scope.save = (post) ->
-    console.log post
     uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
       post.cover = url
       $http.put('/api/posts/' + post._id, post).success ->
@@ -127,3 +125,11 @@ angular.module 'beepBoopWebsiteApp'
       $http.delete('/api/users/' + user._id).success ->
         $scope.users.splice $scope.users.indexOf user, 1
         delete $scope.selectedUser
+
+.controller 'AdminAboutCtrl', ($scope, $http) ->
+
+  $http.get('/api/pages/about').success (page) ->
+    $scope.page = page
+
+  $scope.save = (page) ->
+    $http.put '/api/pages/' + page._id, page

@@ -8,6 +8,9 @@
   a.sidebar-item(href="/admin/users", ng-class="{ 'selected': isActive('/users') }")
     i.fa.fa-user
     span.hover Users
+  a.sidebar-item(href="/admin/about", ng-class="{ 'selected': isActive('/about') }")
+    i.fa.fa-question-circle
+    span.hover About
   a.sidebar-item.bottom(href="javascript:", ng-click="logout()")
     i.fa.fa-sign-out
     span.hover Logout
