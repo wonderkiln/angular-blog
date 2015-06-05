@@ -26,7 +26,8 @@
     "connect-mongo": "^0.4.1",
     "socket.io": "^1.0.6",
     "socket.io-client": "^1.0.6",
-    "socketio-jwt": "^2.0.2"
+    "socketio-jwt": "^2.0.2",
+    "multer": "^0.1.8"
   },
   "devDependencies": {
     "grunt": "~0.4.4",

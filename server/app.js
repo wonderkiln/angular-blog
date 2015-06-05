@@ -10,6 +10,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
+var multer = require('multer')
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
@@ -19,6 +20,7 @@ if(config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
+app.use(multer({ dest: './uploads/' }));
 var server = require('http').createServer(app);
 var socketio = require('socket.io')(server, {
   serveClient: (config.env === 'production') ? false : true,

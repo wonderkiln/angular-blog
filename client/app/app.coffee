@@ -15,6 +15,7 @@ angular.module 'beepBoopWebsiteApp', [
       element.redactor
         minHeight: 300
         maxHeight: 300
+        imageUpload: '/api/pages/upload'
         changeCallback: ->
           scope.$apply ->
             controller.$setViewValue element.val()

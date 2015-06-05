@@ -15,5 +15,7 @@ router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 // Public
 router.get('/', controller.index);
 router.get('/:name', controller.show);
+router.post('/upload', controller.upload);
+router.get('/uploads/:name', controller.uploads);
 
 module.exports = router;

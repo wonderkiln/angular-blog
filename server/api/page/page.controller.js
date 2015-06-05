@@ -9,6 +9,7 @@
 
 'use strict';
 
+var fs = require('fs');
 var _ = require('lodash');
 var Page = require('./page.model');
 
@@ -18,6 +19,21 @@ exports.index = function(req, res) {
     if(err) { return handleError(res, err); }
     return res.json(200, pages);
   });
+};
+
+// Upload a photo for a post
+exports.upload = function(req, res) {
+  return res.json(200, {
+    filelink: '/api/pages/' + req.files.file.path
+  });
+};
+
+// Upload a photo for a post
+exports.uploads = function(req, res) {
+  res.writeHead(200, {'Content-Type': 'image/jpeg'} );
+  var path = './uploads/' + req.params.name;
+  var fileStream = fs.createReadStream(path);
+  fileStream.pipe(res);
 };
 
 // Get a single page
