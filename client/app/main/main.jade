@@ -1,12 +1,13 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-div.wrapper(style="width: 802px;")
-	div.tile.animated.fadeInUp(ng-repeat="post in posts", class="{{getTile($index)}}", style="-webkit-animation-delay: {{$index * 0.2}}s;")
-		a.item(href="/reviews/{{post._id}}", style="background: {{getColor($index)}};")
-			div.cover(style="background: url('http://lorempixel.com/1000/{{600 + $index}}/');")
-			div.content.bottom
-				div.platforms
-					h1
-						i(ng-repeat="platform in post.platforms", class="fa fa-{{platform}}", style="margin-right: 10px;")
-				h1 {{post.title}}
-				p(ng-bind-html="post.content | limitTo: 200")
+.wrapper(style="width: 804px;")
+  .tile.animated.fadeInUp(ng-repeat="post in posts", class="{{getTile($index)}}", style="-webkit-animation-delay: {{$index * 0.1}}s;")
+    a.item(href="/reviews/{{post._id}}", style="background: {{getColor($index)}};")
+      //- .cover(style="background: url('http://lorempixel.com/1000/{{600 + $index}}/');")
+      .cover(style="background: url('{{post.cover}}');")
+      .content.bottom
+        h1 {{post.title}}
+        p
+          i.fa.fa-calendar-o(style="margin-right: 8px;")
+          | {{post.date | date:'MMM dd, yyyy'}}
+        p.preview(ng-bind-html="post.content | htmlToPlainText")

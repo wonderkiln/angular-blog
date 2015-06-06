@@ -8,18 +8,36 @@
 var Post = require('../api/post/post.model');
 var User = require('../api/user/user.model');
 
+// Let's get posts from: googleblog.blogspot.com
 Post.find({}).remove(function() {
-  for(var i = 1; i <= 10; i++) {
-    Post.create({
-      title: 'Assassin\'s Creed II Mega Review no. ' + i,
-      tags: ['tag1', 'tag2', 'tag3'],
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      cover: 'http://lorempixel.com/g/400/200/',
-      gameCard: {
-        enabled: true
+  
+  var http = require('http');
+  var url = 'http://googleblog.blogspot.com/feeds/posts/default?alt=json';
+
+  http.get(url, function(res) {
+    var body = '';
+
+    res.on('data', function(data) {
+        body += data;
+    });
+
+    res.on('end', function() {
+      var json = JSON.parse(body);
+      var items = json.feed.entry;
+
+      for(var i = 0; i < items.length; i++) {
+        Post.create({
+          title: items[i].title.$t,
+          content: items[i].content.$t,
+          cover: ('media$thumbnail' in items[i] ? items[i].media$thumbnail.url : 'http://lorempixel.com/400/200/'),
+          date: ('published' in items[i] ? items[i].published.$t : new Date()),
+          gameCard: {
+            enabled: true
+          }
+        });
       }
     });
-  }
+  });
 });
 
 User.find({}).remove(function() {

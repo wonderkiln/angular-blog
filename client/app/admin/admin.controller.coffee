@@ -44,7 +44,7 @@ angular.module 'beepBoopWebsiteApp'
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
-  $http.get('/api/posts/title').success (relevant) ->
+  $http.get('/api/posts/fields/title').success (relevant) ->
     $scope.relevant = relevant
 
   $http.get('/api/users/fields/name,role').success (users) ->

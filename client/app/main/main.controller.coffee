@@ -1,19 +1,31 @@
 'use strict'
 
 angular.module 'beepBoopWebsiteApp'
-.controller 'MainCtrl', ($scope, $http, socket) ->
+.controller 'MainCtrl', ($scope, $http) ->
 
   $http.get('/api/posts').success (posts) ->
     $scope.posts = posts
 
-  $(window).scroll ->
-    $('#cover').css
-      opacity: 1 - ($(window).scrollTop() / $(window).height())
-
   $scope.getColor = (index) ->
-    colors = ['#26ADE4', '#FE5F55', '#D6D1B1', '#C7EFCF', '#BA740D']
+    colors = ['#26ADE4', '#FE5F55', '#009BA2', '#E89509', '#458585']
     colors[index % colors.length]
 
   $scope.getTile = (index) ->
-    tiles = ['tile-33', 'tile-33', 'tile-33', 'tile-50', 'tile-50', 'tile-25', 'tile-75', 'tile-25', 'tile-25', 'tile-25', 'tile-25']
-    if index == 0 then 'tile-100 big' else tiles[(index - 1) % tiles.length]
+    tiles = ['tile-50', 'tile-50', 'tile-25', 'tile-75', 'tile-50', 'tile-50', 'tile-75', 'tile-25']
+
+    if index == 0
+      return 'tile-100 big'
+
+    if index == $scope.posts.length - 1 && $scope.posts.length % 2 == 0
+      return 'tile-100'
+
+    return tiles[(index - 1) % tiles.length]
+
+.controller 'MainDetailCtrl', ($scope, $http, $stateParams) ->
+
+  $http.get('/api/posts/' + $stateParams.id).success (post) ->
+    $scope.post = post
+
+  $(window).scroll ->
+    $('#cover').css
+      opacity: 1 - ($(window).scrollTop() / $(window).height())

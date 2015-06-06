@@ -10,4 +10,4 @@ angular.module 'beepBoopWebsiteApp'
   .state 'main-detail',
     url: '/reviews/:id'
     templateUrl: 'app/main/main-detail.html'
-    controller: 'MainCtrl'
+    controller: 'MainDetailCtrl'

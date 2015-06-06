@@ -8,14 +8,15 @@ angular.module 'beepBoopWebsiteApp', [
   'btford.socket-io',
   'ui.router'
 ]
+.filter 'htmlToPlainText', ->
+  (text) ->
+    String(text).replace(/<[^>]+>/gm, '')
 .directive 'redactor', [ ->
   {
     require: '?ngModel'
     link: (scope, element, attributes, controller) ->
       element.redactor
         minHeight: 300
-        maxHeight: 300
-        imageUpload: '/api/pages/upload'
         changeCallback: ->
           scope.$apply ->
             controller.$setViewValue element.val()

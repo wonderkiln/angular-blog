@@ -4,6 +4,7 @@ angular.module 'beepBoopWebsiteApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
 
   $scope.isLoggedIn = Auth.isLoggedIn()
+  $scope.currentUser = Auth.getCurrentUser()
   $scope.isAdmin = Auth.isAdmin()
 
   $scope.user =
