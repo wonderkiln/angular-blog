@@ -19,5 +19,12 @@ module.exports = {
             process.env.MONGOHQ_URL ||
             process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME ||
             'mongodb://localhost/beepboopwebsite'
+  },
+
+  s3: {
+    folder: process.env.S3_FOLDER,
+    bucket: process.env.S3_BUCKET,
+    key: process.env.S3_KEY,
+    secret: process.env.S3_SECRET
   }
 };

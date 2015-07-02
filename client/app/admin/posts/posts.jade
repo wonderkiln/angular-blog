@@ -14,7 +14,9 @@
         li
           a(href="javascript:", ng-click="create()") Create post
   .list-item(href="javascript:", ng-repeat="i in posts | filter:filter", ng-class="{ 'selected': selectedPost == i }")
-    span.list-title {{i.title}}
+    span.list-title
+      span(ng-if="i.featured") *
+      | {{i.title}}
     span.list-subtitle {{i.date | date:'MMM dd, yyyy'}}
     span.list-more.drop
       i.fa.fa-ellipsis-v

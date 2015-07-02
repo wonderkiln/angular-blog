@@ -44,7 +44,7 @@ exports.create = function(req, res) {
 
   // TODO: if post is fetured, disable all the rest of the posts
   // as being featured
-  
+
   Post.create(req.body, function(err, post) {
     if(err) { return handleError(res, err); }
     return res.json(201, post);
@@ -55,8 +55,11 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
 
-  // TODO: if post is fetured, disable all the rest of the posts
-  // as being featured
+  if(req.body.featured == true) { // disables all featured items
+    Post.update({ featured: true }, { $set: { featured: false } }, { multi: true }, function(err, count) {
+      console.log('Updated ' + count + ' items / set featured = NO');
+    });
+  }
 
   Post.findById(req.params.id, function (err, post) {
     if (err) { return handleError(res, err); }

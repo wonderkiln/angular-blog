@@ -6,8 +6,9 @@
     img(src="{{selectedPost.cover}}", height="120", ng-hide="newPhoto")
     img(src="{{newPhoto}}", height="120", ng-show="newPhoto")
     //- 
+    .detail-title(ng-if="selectedPost.cover")
+      a(href="javascript:", ng-click="removeImage(selectedPost.cover)") Remove image
     .detail-title
-      span(ng-show="progress") Uploading... ({{progress}}%) 
       input(type="file", onchange="angular.element(this).scope().photoFileChanged(this)")
     //- 
     span.detail-title Title
@@ -34,7 +35,7 @@
     span.detail-title Published
     select(ng-model="selectedPost.published", ng-options="o.v as o.n for o in [{ n: 'Not published', v: false }, { n: 'Published', v: true }]")
     //- 
-    span.detail-title Game Card
+    span.detail-section Game Card
     select(ng-model="selectedPost.gameCard.enabled", ng-options="o.v as o.n for o in [{ n: 'Without game card', v: false }, { n: 'With game card', v: true }]")
     //- 
     div(ng-show="selectedPost.gameCard.enabled")
@@ -48,8 +49,8 @@
       span.detail-title Developer
       input(type="text", ng-model="selectedPost.gameCard.developer")
       //- 
-      span.detail-title(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'Windows', 'OSX', 'Linux']") Platforms
-      a.tag(href="javascript:", ng-repeat="i in platforms", ng-click="toggleItemInList(selectedPost.gameCard.platforms, i)", ng-class="{ 'disabled': selectedPost.gameCard.platforms.indexOf(i) == -1 }") {{i}}
+      span.detail-title Release Date
+      input(type="date", ng-model="selectedPost.gameCard.releaseDate", json-string-to-date)
       //- 
       span.detail-title Price
       input(type="text", ng-model="selectedPost.gameCard.price")
@@ -57,7 +58,10 @@
       span.detail-title Website
       input(type="text", ng-model="selectedPost.gameCard.website")
       //- 
-      span.detail-title Social
+      span.detail-title(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'Windows', 'OSX', 'Linux']") Platforms
+      a.tag(href="javascript:", ng-repeat="i in platforms", ng-click="toggleItemInList(selectedPost.gameCard.platforms, i)", ng-class="{ 'disabled': selectedPost.gameCard.platforms.indexOf(i) == -1 }") {{i}}
+      //- 
+      span.detail-section Social
       .block
         span.detail-title Facebook
         input(type="text", ng-model="selectedPost.gameCard.social.facebook")
@@ -77,9 +81,6 @@
         span.detail-title Youtube
         input(type="text", ng-model="selectedPost.gameCard.social.youtube")
       //- 
-      span.detail-title Release Date
-      input(type="date", ng-model="selectedPost.gameCard.releaseDate", json-string-to-date)
-      //- 
       span.detail-title Relevant Games
       .block
         a.tag(href="javascript:", ng-repeat="i in selectedPost.gameCard.relevantGames", ng-click="removeFromList(selectedPost.gameCard.relevantGames, i)") {{i.title}}
@@ -87,6 +88,7 @@
         //-  | filter:{ gameCard.enabled: true }
         a.tag.disabled(href="javascript:", ng-repeat="i in relevant", ng-click="addToList(selectedPost.gameCard.relevantGames, i)") {{i.title}}
     //- 
+    span(ng-show="progress") Uploading... ({{progress}}%) 
     .detail-title(ng-hide="isNewPost")
       a.button(href="javascript:", ng-click="save(selectedPost)") Save changes
     //- 

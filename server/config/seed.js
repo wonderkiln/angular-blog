@@ -10,7 +10,7 @@ var User = require('../api/user/user.model');
 
 // Let's get posts from: googleblog.blogspot.com
 Post.find({}).remove(function() {
-  
+
   var http = require('http');
   var url = 'http://googleblog.blogspot.com/feeds/posts/default?alt=json';
 

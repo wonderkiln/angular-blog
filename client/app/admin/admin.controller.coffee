@@ -6,16 +6,14 @@ getFileUrl = (file, callback) ->
     callback loadEvent.target.result
   reader.readAsDataURL file
 
-uploadFile = ($scope, S3, file, callback) ->
+uploadFile = ($scope, S3, folder, file, callback) ->
+  delete $scope.progress
   if file
-    $scope.progress = 0
-    S3.upload file, (finished, progress, err, url) ->
+    S3.uploadFileToFolder folder, 'image', file, ((err, url) ->
+      callback url unless err
+    ), (progress) ->
       $scope.$apply ->
-        if !finished
-          $scope.progress = progress
-        else
-          delete $scope.progress
-          callback url
+        $scope.progress = progress
   else
     callback ''
 
@@ -65,20 +63,23 @@ angular.module 'beepBoopWebsiteApp'
         platforms: []
         relevantGameIds: []
 
+  $scope.removeImage = (url) ->
+    S3.deleteFile url, (err) ->
+      $scope.$apply ->
+        $scope.selectedPost.cover = '' unless err
+
   $scope.publish = (post) ->
-    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+    uploadFile $scope, S3, $scope.selectedPost.title, $scope.newPhotoFile, (url) ->
       post.cover = url
       $http.post('/api/posts', post).success (newPost) ->
         $scope.posts.push newPost
         $scope.selectedPost = newPost
         delete $scope.isNewPost
-        alert 'success'
 
   $scope.save = (post) ->
-    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+    uploadFile $scope, S3, $scope.selectedPost.title, $scope.newPhotoFile, (url) ->
       post.cover = url
-      $http.put('/api/posts/' + post._id, post).success ->
-        alert 'success'
+      $http.put '/api/posts/' + post._id, post
 
   $scope.delete = (post) ->
     if confirm 'Delete'
@@ -108,7 +109,7 @@ angular.module 'beepBoopWebsiteApp'
     $scope.selectedUser = {}
 
   $scope.register = (user) ->
-    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+    uploadFile $scope, S3, user.name, $scope.newPhotoFile, (url) ->
       user.photo = url
       $http.post('/api/users', user).success (newUser) ->
         $scope.users.push newUser
@@ -116,7 +117,7 @@ angular.module 'beepBoopWebsiteApp'
         delete $scope.isNewUser
 
   $scope.save = (user) ->
-    uploadFile $scope, S3, $scope.newPhotoFile, (url) ->
+    uploadFile $scope, S3, user.name, $scope.newPhotoFile, (url) ->
       user.photo = url
       $http.put '/api/users/' + user._id, user
 

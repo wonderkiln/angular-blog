@@ -8,5 +8,12 @@ module.exports = {
     uri: 'mongodb://localhost/beepboopwebsite-dev'
   },
 
-  seedDB: true
+  seedDB: true,
+
+  s3: {
+    folder: 'development-content',
+    bucket: 'beepboop-website',
+    key: "***REMOVED***",
+    secret: "***REMOVED***"
+  }
 };

@@ -1,37 +1,32 @@
 'use strict'
 
 angular.module 'beepBoopWebsiteApp'
-.factory 'S3', ($location, $rootScope, $http, $q) ->
+.factory 'S3', ($location, $rootScope, $http, $q, S3Config) ->
 
-  credentials =
-    bucket: '***REMOVED***'
-    access_key: '***REMOVED***'
-    secret_key: '***REMOVED***'
+  uploadFileToFolder: (folder, prefix, file, callback, progressCallback) ->
+    S3Config.getParams folder, prefix, (p) ->
 
-  upload: (file, callback) ->
-    # callback(finished, progress, err, url)
-    AWS.config.update
-      accessKeyId: credentials.access_key
-      secretAccessKey: credentials.secret_key
-    AWS.config.region = 'us-east-1'
+      params = p
+      params.ContentType = file.type
+      params.Body = file
 
-    bucket = new AWS.S3
-      params:
-        Bucket: credentials.bucket
+      console.log 'Uploading file w/ config... ' + JSON.stringify params
 
-    params =
-      Key: chance.guid()
-      ContentType: file.type
-      Body: file
+      S3Config.configS3 ->
+        s3 = new AWS.S3()
+        s3.putObject params, (err) ->
+          console.log 'Done uploading w/ err ' + err
+          url = S3Config.getPublicUrlFromKey params.Bucket, params.Key
+          callback err, url if callback
+        .on 'httpUploadProgress', (progress) ->
+          value = Math.round progress.loaded / progress.total * 100
+          progressCallback value if progressCallback
 
-    bucket.putObject params, (err, data) ->
-      if err
-        callback true, 0, true
-      else
-        callback true, 0, false, 'https://s3.amazonaws.com/' + credentials.bucket + '/' + params.Key
-    .on 'httpUploadProgress', (progress) ->
-      p = Math.round(progress.loaded / progress.total * 100)
-      callback false, p
-
-  delete: (key, callback) ->
-    #
+  deleteFile: (url, callback) ->
+    console.log 'Deleting file... ' + url
+    S3Config.getKeyFromPublicUrl url, (params) ->
+      console.log 'Deleting file w/ config... ' + JSON.stringify params
+      S3Config.configS3 ->
+        s3 = new AWS.S3()
+        s3.deleteObject params, (err) ->
+          callback err if callback
