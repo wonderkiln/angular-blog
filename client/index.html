@@ -46,13 +46,13 @@
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
-    <!-- build:js({client,node_modules}) app/vendor.js -->
+    <!-- build:js(client) app/vendor.js -->
       <!-- bower:js -->
       <script src="bower_components/jquery/dist/jquery.js"></script>
       <script src="bower_components/angular/angular.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
       <script src="bower_components/angular-resource/angular-resource.js"></script>
       <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
@@ -63,25 +63,25 @@
       <script src="assets/redactor/redactor.min.js"></script>
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,client}) app/app.js -->
-        <script src="app/app.js"></script>
-          <!-- injector:js -->
-          <script src="app/about/about.js"></script>
-          <script src="app/account/account.js"></script>
-          <script src="app/account/login/login.js"></script>
-          <script src="app/account/settings/settings.js"></script>
-          <script src="app/account/signup/signup.js"></script>
-          <script src="app/admin/admin.js"></script>
-          <script src="app/discover/discover.js"></script>
-          <script src="app/main/main.js"></script>
-          <script src="components/auth/auth.js"></script>
-          <script src="components/auth/user.js"></script>
-          <script src="components/mongoose-error/mongoose-error.js"></script>
-          <script src="components/navbar/navbar.js"></script>
-          <script src="components/s3/s3.js"></script>
-          <script src="components/socket/socket.js"></script>
-          <script src="components/socket/socket.service.js"></script>
-          <!-- endinjector -->
-        <!-- endbuild -->
+    <!-- build:js({.tmp,client}) app/app.js -->
+    <script src="app/app.js"></script>
+      <!-- injector:js -->
+      <script src="app/about/about.js"></script>
+      <script src="app/account/account.js"></script>
+      <script src="app/account/login/login.js"></script>
+      <script src="app/account/settings/settings.js"></script>
+      <script src="app/account/signup/signup.js"></script>
+      <script src="app/admin/admin.js"></script>
+      <script src="app/discover/discover.js"></script>
+      <script src="app/main/main.js"></script>
+      <script src="components/auth/auth.js"></script>
+      <script src="components/auth/user.js"></script>
+      <script src="components/mongoose-error/mongoose-error.js"></script>
+      <script src="components/navbar/navbar.js"></script>
+      <script src="components/s3/s3.js"></script>
+      <script src="components/socket/socket.js"></script>
+      <script src="components/socket/socket.service.js"></script>
+      <!-- endinjector -->
+    <!-- endbuild -->
 </body>
 </html>
