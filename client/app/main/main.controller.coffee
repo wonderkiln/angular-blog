@@ -26,6 +26,15 @@ angular.module 'beepBoopWebsiteApp'
   $http.get('/api/posts/' + $stateParams.id).success (post) ->
     $scope.post = post
 
+  $http.get('/api/comments/' + $stateParams.id).success (comments) ->
+    $scope.comments = comments
+
+  $scope.addComment = (comment) ->
+    comment.postId = $stateParams.id
+    comment.name = "Test user"
+    $http.post('/api/comments', comment).success (newComment) ->
+      $scope.comments.push newComment
+
   $(window).scroll ->
     $('#cover').css
       opacity: 1 - ($(window).scrollTop() / $(window).height())

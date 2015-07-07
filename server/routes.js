@@ -12,6 +12,7 @@ module.exports = function(app) {
   app.use('/api/posts', require('./api/post'));
   app.use('/api/users', require('./api/user'));
   app.use('/api/pages', require('./api/page'));
+  app.use('/api/comments', require('./api/comment'));
 
   app.use('/api/s3', require('./api/s3'));
 

@@ -8,6 +8,14 @@
 				img(src="assets/images/platforms/windows-dark.png", height="48")
 			.section
 				h1 {{post.title}}
-				//- h3 -- by Austin Kettner, Adrian Mateoaea and Alexandru I. Ion --
 			.section
 				p(ng-bind-html="post.content")
+			.section(align="left")
+				form(ng-submit="addComment(comment)")
+					div Add a comment
+					input(type="text", ng-model="comment.content")
+			.section(align="left")
+				p(ng-repeat="i in comments")
+					span {{$index + 1}}. {{i.name}}
+					br
+					span {{i.content}}
