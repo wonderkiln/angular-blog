@@ -11,7 +11,6 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'client/bower_components/jquery/dist/jquery.js',
       'client/bower_components/angular/angular.js',
       'client/bower_components/angular-resource/angular-resource.js',
       'client/bower_components/angular-cookies/angular-cookies.js',
@@ -19,6 +18,7 @@ module.exports = function(config) {
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'client/bower_components/jquery/dist/jquery.js',
       'client/app/app.coffee',
       'client/app/**/*.coffee',
       'client/components/**/*.coffee',

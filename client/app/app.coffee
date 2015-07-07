@@ -1,9 +1,9 @@
 'use strict'
 
 angular.module 'beepBoopWebsiteApp', [
-	'ngSanitize',
 	'ngResource',
 	'ngCookies',
+	'ngSanitize',
 	'ngAnimate',
 	'btford.socket-io',
 	'ui.router'
