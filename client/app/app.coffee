@@ -61,7 +61,7 @@ angular.module 'beepBoopWebsiteApp', [
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
 	$urlRouterProvider
-	.otherwise '/reviews'
+	.otherwise '/'
 
 	$locationProvider.html5Mode true
 	$httpProvider.interceptors.push 'authInterceptor'

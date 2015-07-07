@@ -1,7 +1,7 @@
 .wrapper(ng-controller='NavbarCtrl')
   .navbar
     .container
-      a.navbar-brand(href="/reviews", ng-hide="isActive('/admin')")
+      a.navbar-brand(href="/", ng-hide="isActive('/admin')")
         i.fa.fa-globe.icon-left
         | BeepBoop
       a.navbar-brand(href="javascript:window.history.back();", ng-show="isActive('/admin')")
