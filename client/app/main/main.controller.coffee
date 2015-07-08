@@ -21,7 +21,9 @@ angular.module 'beepBoopWebsiteApp'
 
     return tiles[(index - 1) % tiles.length]
 
-.controller 'MainDetailCtrl', ($scope, $http, $stateParams) ->
+.controller 'MainDetailCtrl', ($scope, $http, $stateParams, Auth) ->
+
+  $scope.me = Auth.getCurrentUser()
 
   $http.get('/api/posts/' + $stateParams.id).success (post) ->
     $scope.post = post
@@ -31,9 +33,10 @@ angular.module 'beepBoopWebsiteApp'
 
   $scope.addComment = (comment) ->
     comment.postId = $stateParams.id
-    comment.name = "Test user"
+    comment.user = $scope.me
     $http.post('/api/comments', comment).success (newComment) ->
       $scope.comments.push newComment
+      delete $scope.comment
 
   $(window).scroll ->
     $('#cover').css

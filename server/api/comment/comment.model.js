@@ -5,8 +5,9 @@ var mongoose = require('mongoose'),
 
 var CommentSchema = new Schema({
   postId: String,
+  commentId: String,
   date: { type: Date, default: Date.now },
-  name: String,
+  user: {},
 	content: String
 });
 
