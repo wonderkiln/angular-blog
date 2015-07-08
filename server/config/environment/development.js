@@ -13,7 +13,7 @@ module.exports = {
   s3: {
     folder: 'development-content',
     bucket: 'beepboop-website',
-    key: "***REMOVED***",
-    secret: "***REMOVED***"
+    key: "AKIAJH4JBCHEUNK4FBMA",
+    secret: "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"
   }
 };

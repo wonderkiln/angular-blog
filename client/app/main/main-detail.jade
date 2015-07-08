@@ -11,11 +11,13 @@
 			.section
 				p(ng-bind-html="post.content")
 			.section(align="left")
-				form(ng-submit="addComment(comment)")
-					div Add a comment
-					input(type="text", ng-model="comment.content")
-			.section(align="left")
-				p(ng-repeat="i in comments")
-					span {{$index + 1}}. {{i.name}}
-					br
-					span {{i.content}}
+				h2 Comments
+				.comment(ng-repeat="i in comments")
+					.avatar(style="background-image: url('{{i.user.photo}}');")
+					.title {{i.user.name}}, {{i.date | stringToDate | relativeDate}}
+					.c-content {{i.content}}
+			.section(align="left", ng-if="me.name")
+				form.comment(ng-submit="addComment(comment)")
+					.avatar(style="background-image: url('{{me.photo}}');")
+					.title Say something, {{me.name}}!
+					input.c-content(type="text", placeholder="Say something...", ng-model="comment.content")

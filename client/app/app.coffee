@@ -6,11 +6,15 @@ angular.module 'beepBoopWebsiteApp', [
 	'ngSanitize',
 	'ngAnimate',
 	'btford.socket-io',
-	'ui.router'
+	'ui.router',
+	'relativeDate'
 ]
 .filter 'htmlToPlainText', ->
 	(text) ->
 		String(text).replace(/<[^>]+>/gm, '')
+.filter 'stringToDate', ->
+	(text) ->
+		new Date text
 .directive 'redactor', [ ->
 	{
 		require: '?ngModel'

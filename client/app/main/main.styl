@@ -5,7 +5,7 @@ input[type="text"], input[type="password"], input[type="date"], select, .input
     outline none
     font-size 14px
     color rgb(80,80,80)
-    
+
 button, .button
     padding 10px 25px
     background #556F79
@@ -41,26 +41,26 @@ button, .button
     &:hover
         .cover
             opacity .3
-   
+
 .tile-33
     width 33.33%
 
 .tile-50
     width 50%
-    
+
 .tile-100
     width 100%
     &.big
         height 350px
         .preview
             display block
-    
+
 .tile-25
     width 35%
-    
+
 .tile-75
     width 65%
-    
+
 .item
     background #FF6F00
     border 1px solid rgba(0,0,0,.05)
@@ -87,7 +87,7 @@ button, .button
         line-height inherit
     .cover
         opacity .1
-            
+
 .section
     margin-bottom 60px
     display block
@@ -104,7 +104,7 @@ p
 
 a
     color #83CBC4
-    
+
 .cover
     background-position center center !important
     background-repeat no-repeat !important
@@ -116,7 +116,7 @@ a
     right 0
     z-index 5
     transition opacity linear .3s
-    
+
 .page
     margin-bottom 100px
     background white
@@ -136,3 +136,29 @@ a
 
 .fill
     height 100vh
+
+.comment
+  margin-top 20px
+  position relative
+  clear both
+  .avatar
+    background rgb(240,240,240)
+    position absolute
+    left 0
+    top 0
+    border-radius 25px
+    width 50px
+    height 50px
+    overflow hidden
+    background-size cover
+  .title, .c-content
+    margin-left 75px
+  .title
+    margin-bottom 8px
+    font-size 13px
+    font-weight 700
+    text-transform uppercase
+  .c-content:not(input)
+    padding-bottom 20px
+    line-height 28px
+    border-bottom 1px solid rgb(240,240,240)
