@@ -8,21 +8,21 @@
         i.fa.fa-arrow-left
       ul.nav.navbar-right
         li(ng-class='{active: isActive("/reviews")}')
-          a(href="/") Reviews
+          a(ui-sref="main") Reviews
         li(ng-class='{active: isActive("/discover")}')
-          a(href="/discover") Discover
+          a(ui-sref="discover") Discover
         li(ng-class='{active: isActive("/about")}')
-          a(href="/about") About
+          a(ui-sref="about") About
         li(ng-hide="isLoggedIn")
-          a(href="/login")
+          a(href="javascript:")
             i.fa.fa-bars
           ul#login.dropdown
             li
-              a(href="/login")
+              a(ui-sref="login")
                 i.fa.fa-sign-in.icon-left
                 | Login
             li
-              a(href="/signup")
+              a(ui-sref="signup")
                 i.fa.fa-pencil.icon-left
                 | Signup
         li(ng-if="isLoggedIn")
@@ -31,11 +31,11 @@
             i.fa.fa-angle-down
           ul.dropdown
             li(ng-if="!isAdmin")
-              a(href="/settings")
+              a(ui-sref="settings")
                 i.fa.fa-user.icon-left
                 | Profile
             li(ng-if="isAdmin")
-              a(href="/admin/posts")
+              a(ui-sref="admin-posts")
                 i.fa.fa-th.icon-left
                 | Administration
             li

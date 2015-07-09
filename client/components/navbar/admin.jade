@@ -1,14 +1,14 @@
 .sidebar(ng-controller='NavbarCtrl')
-  a.sidebar-item(href="/")
+  a.sidebar-item(ui-sref="main")
     i.fa.fa-home
     span.hover Home
-  a.sidebar-item(href="/admin/posts", ng-class="{ 'selected': isActive('/posts') }")
+  a.sidebar-item(ui-sref="admin-posts", ng-class="{ 'selected': isActive('/posts') }")
     i.fa.fa-pencil
     span.hover Posts
-  a.sidebar-item(href="/admin/users", ng-class="{ 'selected': isActive('/users') }")
+  a.sidebar-item(ui-sref="admin-users", ng-class="{ 'selected': isActive('/users') }")
     i.fa.fa-user
     span.hover Users
-  a.sidebar-item(href="/admin/about", ng-class="{ 'selected': isActive('/about') }")
+  a.sidebar-item(ui-sref="admin-about", ng-class="{ 'selected': isActive('/about') }")
     i.fa.fa-question-circle
     span.hover About
   a.sidebar-item.bottom(href="javascript:", ng-click="logout()")
