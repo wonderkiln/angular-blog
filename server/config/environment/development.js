@@ -11,9 +11,9 @@ module.exports = {
   seedDB: true,
 
   s3: {
-    folder: 'development-content',
-    bucket: 'beepboop-website',
-    key: "***REMOVED***",
-    secret: "***REMOVED***"
+    folder: '',
+    bucket: '',
+    key: '',
+    secret: ''
   }
 };

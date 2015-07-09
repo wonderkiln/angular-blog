@@ -49,18 +49,6 @@ User.find({}).remove(function() {
     photo: 'http://lorempixel.com/g/400/200/'
   }, {
     provider: 'local',
-    name: 'Adrian Mateoaea',
-    email: 'adrian@test.com',
-    password: 'adrian',
-    photo: 'http://lorempixel.com/g/400/200/'
-  }, {
-    provider: 'local',
-    name: 'Austin Kettner',
-    email: 'austin@test.com',
-    password: 'austin',
-    photo: 'http://lorempixel.com/g/400/200/'
-  }, {
-    provider: 'local',
     role: 'admin',
     name: 'Admin',
     email: 'admin@admin.com',
