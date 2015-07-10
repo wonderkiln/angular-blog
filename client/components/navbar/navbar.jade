@@ -1,0 +1,44 @@
+.wrapper(ng-controller='NavbarCtrl')
+  .navbar
+    .container
+      a.navbar-brand(href="/", ng-hide="isActive('/admin')")
+        i.fa.fa-globe.icon-left
+        | BeepBoop
+      a.navbar-brand(href="javascript:window.history.back();", ng-show="isActive('/admin')")
+        i.fa.fa-arrow-left
+      ul.nav.navbar-right
+        li(ng-class='{active: isActive("/reviews")}')
+          a(ui-sref="main") Reviews
+        li(ng-class='{active: isActive("/discover")}')
+          a(ui-sref="discover") Discover
+        li(ng-class='{active: isActive("/about")}')
+          a(ui-sref="about") About
+        li(ng-hide="isLoggedIn")
+          a(href="javascript:")
+            i.fa.fa-bars
+          ul#login.dropdown
+            li
+              a(ui-sref="login")
+                i.fa.fa-sign-in.icon-left
+                | Login
+            li
+              a(ui-sref="signup")
+                i.fa.fa-pencil.icon-left
+                | Signup
+        li(ng-if="isLoggedIn")
+          a(href="javascript:")
+            | {{currentUser.name}} 
+            i.fa.fa-angle-down
+          ul.dropdown
+            li(ng-if="!isAdmin")
+              a(ui-sref="settings")
+                i.fa.fa-user.icon-left
+                | Profile
+            li(ng-if="isAdmin")
+              a(ui-sref="admin-posts")
+                i.fa.fa-th.icon-left
+                | Administration
+            li
+              a(href="javascript:", ng-click="logout()")
+                i.fa.fa-sign-out.icon-left
+                | Logout

@@ -1,0 +1,10 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.wrapper(style="width: 300px;")
+    form(ng-submit='login()', novalidate)
+      p Email
+      input.block(type='text', placeholder='Your e-mail', ng-model='user.email')
+      p Password
+      input.block(type='password', placeholder='Your password', ng-model='user.password')
+      p
+      button(type="submit") Login

@@ -1,0 +1,23 @@
+.fixed(ng-include='"components/navbar/navbar.html"')
+
+#cover.cover.fill(style="z-index: 0; background-image: url('{{post.cover}}'); position: fixed;")
+.wrapper
+	.page(style="margin-top: 50vh; z-index: 10; position: relative;")
+		.content
+			.section
+				img(src="assets/images/platforms/windows-dark.png", height="48")
+			.section
+				h1 {{post.title}}
+			.section
+				p(ng-bind-html="post.content")
+			.section(align="left")
+				h2 Comments
+				.comment(ng-repeat="i in comments")
+					.avatar(style="background-image: url('{{i.user.photo}}');")
+					.title {{i.user.name}}, {{i.date | stringToDate | relativeDate}}
+					.c-content {{i.content}}
+			.section(align="left", ng-if="me.name")
+				form.comment(ng-submit="addComment(comment)")
+					.avatar(style="background-image: url('{{me.photo}}');")
+					.title Say something, {{me.name}}!
+					input.c-content(type="text", placeholder="Say something...", ng-model="comment.content")

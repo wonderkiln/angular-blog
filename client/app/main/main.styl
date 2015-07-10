@@ -1,0 +1,164 @@
+input[type="text"], input[type="password"], input[type="date"], select, .input
+    padding 9px 15px
+    background white
+    border 1px solid rgb(220,220,220)
+    outline none
+    font-size 14px
+    color rgb(80,80,80)
+
+button, .button
+    padding 10px 25px
+    background #556F79
+    border none
+    outline none
+    font-size 14px
+    color white
+    text-decoration none
+    &:hover
+        background darken(#556F79, 20%)
+
+.tile
+    height 240px
+    border 2px solid transparent
+    display inline-block
+    position relative
+    float left
+    .cover
+        filter grayscale(100%)
+        -webkit-filter grayscale(100%)
+    .content
+        padding 25px 35px
+        position relative
+        z-index 10
+        transition opacity linear .3s
+    .preview
+        max-height 72px // 24 * 3 lines
+        margin-top 15px
+        overflow hidden
+        font-size 17px
+        line-height 24px
+        display none
+    &:hover
+        .cover
+            opacity .3
+
+.tile-33
+    width 33.33%
+
+.tile-50
+    width 50%
+
+.tile-100
+    width 100%
+    &.big
+        height 350px
+        .preview
+            display block
+
+.tile-25
+    width 35%
+
+.tile-75
+    width 65%
+
+.item
+    background #FF6F00
+    border 1px solid rgba(0,0,0,.05)
+    width 100%
+    height 100%
+    position relative
+    text-decoration none
+    position relative
+    display block
+    overflow hidden
+    text-shadow 0 2px 1px rgba(0,0,0,.2)
+    color white
+    .bottom
+        position absolute
+        left 0
+        right 0
+        bottom 0
+    h1
+        margin 0 0 10px 0
+        font-size 22px
+    p
+        margin 0
+        font-size 14px
+        line-height inherit
+    .cover
+        opacity .1
+
+.section
+    margin-bottom 60px
+    display block
+
+h1
+    margin-bottom 20px
+
+h2
+    margin-bottom 10px
+
+p
+    margin-bottom 20px
+    line-height 25px
+
+a
+    color #83CBC4
+
+.cover
+    background-position center center !important
+    background-repeat no-repeat !important
+    background-size cover !important
+    position absolute
+    top 0
+    bottom 0
+    left 0
+    right 0
+    z-index 5
+    transition opacity linear .3s
+
+.page
+    margin-bottom 100px
+    background white
+    box-shadow 0 0 20px rgba(0,0,0,.1)
+    color: rgb(50,50,50)
+    &.dark
+        background $dark_bg
+        color $dark_color
+    &.no-shadow
+        margin-bottom 5px
+        box-shadow none
+    .content
+        padding 80px 100px
+        text-align center
+        p
+            text-align justify
+
+.fill
+    height 100vh
+
+.comment
+  margin-top 20px
+  position relative
+  clear both
+  .avatar
+    background rgb(240,240,240)
+    position absolute
+    left 0
+    top 0
+    border-radius 25px
+    width 50px
+    height 50px
+    overflow hidden
+    background-size cover
+  .title, .c-content
+    margin-left 75px
+  .title
+    margin-bottom 8px
+    font-size 13px
+    font-weight 700
+    text-transform uppercase
+  .c-content:not(input)
+    padding-bottom 20px
+    line-height 28px
+    border-bottom 1px solid rgb(240,240,240)

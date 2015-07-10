@@ -1,0 +1,25 @@
+.list
+  .list-item
+    input.block(type="text", placeholder="Search by name or e-mail", ng-model="filter.$", style="min-width: 0; width: 95%;")
+    span.list-more.drop(style="top: 28px;")
+      i.fa.fa-ellipsis-v
+      ul.dropdown
+        li
+          a(href="javascript:", ng-click="filter.role = undefined") All
+        li
+          a(href="javascript:", ng-click="filter.role = 'admin'") Only admins
+        li
+          a(href="javascript:", ng-click="filter.role = '!admin'") Only users
+        li.separator
+        li
+          a(href="javascript:", ng-click="create()") Register user
+  .list-item(ng-repeat="i in users | filter:filter", ng-class="{ 'selected': selectedUser == i }")
+    span.list-title {{i.name}}
+    span.list-subtitle {{i.email}}
+    span.list-more.drop
+      i.fa.fa-ellipsis-v
+      ul.dropdown
+        li
+          a(href="javascript:", ng-click="select(i)") Edit
+        li
+          a(href="javascript:", ng-click="delete(i)") Delete

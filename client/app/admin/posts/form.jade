@@ -1,0 +1,108 @@
+.detail
+  div(ng-show="selectedPost")
+    //- 
+    textarea(ng-model="selectedPost.content", redactor)
+    //- 
+    .group
+      label Cover image
+      .group-content
+        img(src="{{selectedPost.cover}}", height="120", ng-hide="newPhoto")
+        img(src="{{newPhoto}}", height="120", ng-show="newPhoto")
+        //- 
+        .detail-title(ng-if="selectedPost.cover")
+          a(href="javascript:", ng-click="removeImage(selectedPost.cover)") Remove image
+          |  or 
+          input(type="file", onchange="angular.element(this).scope().photoFileChanged(this)")
+    //- 
+    .group
+      label Basic info
+      .group-content
+        span.detail-title Title
+        input(type="text", ng-model="selectedPost.title")
+        //- 
+        span.detail-title Date
+        input(type="date", ng-model="selectedPost.date", json-string-to-date)
+        //- 
+        span.detail-title Published
+        select(ng-model="selectedPost.published", ng-options="o.v as o.n for o in [{ n: 'Not published', v: false }, { n: 'Published', v: true }]")
+        //- 
+        span.detail-title Featured
+        select(ng-model="selectedPost.featured", ng-options="o.v as o.n for o in [{ n: 'Not featured', v: false }, { n: 'Featured', v: true }]")
+    //- 
+    .group
+      label Authors
+      .group-content
+        .block
+          a.tag(href="javascript:", ng-repeat="i in selectedPost.authors", ng-click="removeFromList(selectedPost.authors, i)") {{i.name}}
+        .block
+          span.detail-title Click to select authors
+          a.tag.disabled(href="javascript:", ng-repeat="i in users | filter:{ role: 'admin' }", ng-click="addToList(selectedPost.authors, i)") {{i.name}}
+    //- 
+    .group
+      label Tags
+      .group-content
+        .detail-title
+          a.tag(href="javascript:", ng-repeat="i in selectedPost.tags", ng-click="removeFromList(selectedPost.tags, i)") {{i}}
+        form(ng-submit="addToList(selectedPost.tags, newTag)", novalidate)
+          span.detail-title Type and press enter
+          input(type="text", ng-model="newTag", placeholder="Type new tag...")
+    //- 
+    .group
+      label Game Card
+      .group-content
+        select(ng-model="selectedPost.gameCard.enabled", ng-options="o.v as o.n for o in [{ n: 'Without game card', v: false }, { n: 'With game card', v: true }]")
+        //- 
+        div(ng-show="selectedPost.gameCard.enabled")
+          //- 
+          span.detail-title Game Name
+          input(type="text", ng-model="selectedPost.gameCard.gameName")
+          //- 
+          span.detail-title Publisher
+          input(type="text", ng-model="selectedPost.gameCard.publisher")
+          //- 
+          span.detail-title Developer
+          input(type="text", ng-model="selectedPost.gameCard.developer")
+          //- 
+          span.detail-title Release Date
+          input(type="date", ng-model="selectedPost.gameCard.releaseDate", json-string-to-date)
+          //- 
+          span.detail-title Price
+          input(type="text", ng-model="selectedPost.gameCard.price")
+          //- 
+          span.detail-title Website
+          input(type="text", ng-model="selectedPost.gameCard.website")
+          //- 
+          span.detail-title(ng-init="platforms = ['iOS', 'Android', 'Windows Phone', 'Windows', 'OSX', 'Linux']") Platforms
+          a.tag(href="javascript:", ng-repeat="i in platforms", ng-click="toggleItemInList(selectedPost.gameCard.platforms, i)", ng-class="{ 'disabled': selectedPost.gameCard.platforms.indexOf(i) == -1 }") {{i}}
+          //- 
+          span.detail-section Social
+          .block
+            span.detail-title Facebook
+            input(type="text", ng-model="selectedPost.gameCard.social.facebook")
+          .block
+            span.detail-title Twitter
+            input(type="text", ng-model="selectedPost.gameCard.social.twitter")
+          .block
+            span.detail-title Google
+            input(type="text", ng-model="selectedPost.gameCard.social.google")
+          .block
+            span.detail-title Pinterest
+            input(type="text", ng-model="selectedPost.gameCard.social.pinterest")
+          .block
+            span.detail-title Instagram
+            input(type="text", ng-model="selectedPost.gameCard.social.instagram")
+          .block
+            span.detail-title Youtube
+            input(type="text", ng-model="selectedPost.gameCard.social.youtube")
+          //- 
+          span.detail-title Relevant Games
+          .block
+            //-  | filter:{ gameCard.enabled: true }
+            a.tag(href="javascript:", ng-repeat="i in relevant", ng-click="toggleItemInList(selectedPost.gameCard.relevantGames, i)", ng-class="{ 'disabled': selectedPost.gameCard.relevantGames.indexOf(i) == -1 }") {{i.title}}
+    //- 
+    span(ng-show="progress") Uploading... ({{progress}}%) 
+    .detail-title(ng-hide="isNewPost")
+      a.button(href="javascript:", ng-click="save(selectedPost)") Save changes
+    //- 
+    .detail-title(ng-show="isNewPost")
+      a.button(href="javascript:", ng-click="publish(selectedPost)") Add post

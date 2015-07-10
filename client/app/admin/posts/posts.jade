@@ -1,0 +1,27 @@
+.list
+  .list-item
+    input.block(type="text", placeholder="Search by title or content", ng-model="filter.$", style="min-width: 0; width: 95%;")
+    span.list-more.drop(style="top: 28px;")
+      i.fa.fa-ellipsis-v
+      ul.dropdown
+        li
+          a(href="javascript:", ng-click="filter.published = undefined; filter.featured = undefined;") All
+        li
+          a(href="javascript:", ng-click="filter.published = true; filter.featured = undefined;") Only published
+        li
+          a(href="javascript:", ng-click="filter.published = undefined; filter.featured = true;") Only featured
+        li.separator
+        li
+          a(href="javascript:", ng-click="create()") Create post
+  .list-item(href="javascript:", ng-repeat="i in posts | filter:filter", ng-class="{ 'selected': selectedPost == i }")
+    span.list-title
+      span(ng-if="i.featured") *
+      | {{i.title}}
+    span.list-subtitle {{i.date | date:'MMM dd, yyyy'}}
+    span.list-more.drop
+      i.fa.fa-ellipsis-v
+      ul.dropdown
+        li
+          a(href="javascript:", ng-click="select(i)") Edit
+        li
+          a(href="javascript:", ng-click="delete(i)") Delete

@@ -1,0 +1,16 @@
+div(ng-include="'components/navbar/navbar.html'")
+
+.wrapper(style="width: 300px;", ng-init="changePassword = false")
+  form(name="form", ng-submit="changePassword(form)", novalidate)
+    img(src="{{currentUser.photo}}", height="120")
+    p Hello, {{currentUser.name}}
+    p
+      input(type="checkbox", ng-model="changePassword")
+      |  change password
+    div(ng-show="changePassword")
+      p Current Password
+      input.block(type="password", ng-model="user.oldPassword")
+      p New Password
+      input.block(type="password", ng-model="user.newPassword")
+      p
+      button(type="submit") Change password

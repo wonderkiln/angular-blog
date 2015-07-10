@@ -1,0 +1,33 @@
+.detail
+  div(ng-show="selectedUser")
+    //- 
+    img(src="{{selectedUser.photo}}", height="120", ng-hide="newPhoto")
+    img(src="{{newPhoto}}", height="120", ng-show="newPhoto")
+    //- 
+    .detail-title
+      span(ng-show="progress") Uploading... ({{progress}}%) 
+      input(type="file", onchange="angular.element(this).scope().photoFileChanged(this)")
+    //- 
+    span.detail-title Full name
+    input(type="text", ng-model="selectedUser.name")
+    //- 
+    span.detail-title E-mail
+    input(type="text", ng-model="selectedUser.email")
+    //- 
+    span.detail-title Password
+    input(type="password", ng-model="selectedUser.password")
+    //- 
+    span.detail-title Account type
+    select(ng-model="selectedUser.role")
+      option(value="user") User
+      option(value="editor") Editor
+      option(value="admin") Admin
+    //- 
+    span.detail-title Account status
+    select(ng-model="selectedUser.disabled", ng-options="o.v as o.n for o in [{ n: 'Active', v: false }, { n: 'Disabled', v: true }]")
+    //- 
+    .detail-title(ng-hide="isNewUser")
+      a.button(href="javascript:", ng-click="save(selectedUser)") Save changes
+    //- 
+    .detail-title(ng-show="isNewUser")
+      a.button(href="javascript:", ng-click="register(selectedUser)") Register

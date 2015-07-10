@@ -1,0 +1,26 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.wrapper(style="width: 300px;")
+  form(ng-submit="register(user)", novalidate)
+    div(style="margin-top: 20px;")
+      img(src="http://lorempixel.com/g/200/200/", height="120", ng-hide="newPhoto")
+      img(src="{{newPhoto}}", height="120", ng-show="newPhoto")
+      .block
+        span(ng-show="progress") Uploading... ({{progress}}%) 
+        input(type="file", onchange="angular.element(this).scope().photoFileChanged(this)")
+    div(style="margin-top: 20px;")
+      p Your name
+      input.block(type="text", ng-model="user.name")
+    div(style="margin-top: 20px;")
+      p Your e-mail
+      input.block(type="text", ng-model="user.email")
+    div(style="margin-top: 20px;")
+      p Password
+      input.block(type="password", ng-model="user.password")
+    div(style="margin-top: 20px;")
+      input(type="checkbox", ng-model="agree")
+      |  I agree to 
+      a(href="#") terms and conditions
+      | .
+    div(style="margin-top: 20px;")
+      button(type="submit", ng-click="register(user)") Signup

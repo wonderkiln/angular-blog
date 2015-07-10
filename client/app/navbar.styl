@@ -1,0 +1,76 @@
+.fixed
+	position fixed
+	top 0
+	left 0
+	right 0
+	z-index 100
+	.navbar
+		background alpha(#273238, .95)
+		box-shadow 0 2px 2px rgba(0,0,0,.2)
+
+.navbar
+	margin 20px 0
+	height 60px
+	background #273238
+	line-height 60px
+	font-size 14px
+	position relative
+	z-index 100
+	.navbar-brand
+		font-size 16px
+		color white
+		float left
+	a
+		padding 0 22px
+		color #556F79
+		text-decoration none
+		display block
+		.icon-left
+			margin-right 8px
+	ul
+		margin 0
+		padding 0
+		list-style none
+		&.nav
+			&.navbar-right
+				float right
+			& > li
+				float left
+				position relative
+				transition all linear .2s
+				&:hover > a, &.active > a
+					color white
+				&.active
+					box-shadow 0 -4px 0 #83CBC4 inset
+				&:hover ul.dropdown
+					display block
+		&.dropdown
+			min-width 160px
+			background #273238
+			white-space nowrap
+			position absolute
+			display none
+			right 0
+			top 100%
+			li
+				border-top 1px solid darken(#273238, 20%)
+				line-height 50px
+				display block
+				a
+					font-size 13px
+				&:hover a
+					color white
+
+#login
+	label
+		margin-left 25px
+	input
+		width 200px
+		padding 0 25px
+		background none
+		border none
+		outline none
+		display inline-block
+		line-height 60px
+		font-size 14px
+		color white

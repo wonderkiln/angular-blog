@@ -1,0 +1,12 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.wrapper(style="width: 804px;")
+  .tile.animated.fadeInUp(ng-repeat="post in posts", class="{{getTile($index)}}", style="-webkit-animation-delay: {{$index * 0.1}}s;")
+    a.item(href="/review/{{post._id}}", style="background: {{getColor($index)}};")
+      .cover(style="background: url('{{post.cover}}');")
+      .content.bottom
+        h1 {{post.title}}
+        p
+          i.fa.fa-calendar-o(style="margin-right: 8px;")
+          | {{post.date | date:'MMM dd, yyyy'}}
+        p.preview(ng-bind-html="post.content | htmlToPlainText")
