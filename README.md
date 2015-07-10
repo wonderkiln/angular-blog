@@ -19,6 +19,7 @@ Built using Yeoman and the Angular-FullStack generator. Utilizes the following '
 - Coffeescript
 
 ## Features
+- [ ] !IMPORTANT - Generalize internal naming and references
 - [ ] Nested Comments
 - [ ] Admin Password Reset Functionality
 - [ ] Add Like to Post
