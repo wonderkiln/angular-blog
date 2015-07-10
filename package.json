@@ -1,6 +1,6 @@
 {
-  "name": "beep-boop-website",
-  "version": "0.1.0",
+  "name": "angular-blog",
+  "version": "1.0.0",
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "~1.5.0",
