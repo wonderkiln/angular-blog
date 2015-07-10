@@ -1,5 +1,10 @@
-BeepBoop Website v1.0
+angular-blog
 --------------------
+
+## Demo
+Demo: angular-blog-demo.herokuapp.com
+
+## Description
 
 Built using Yeoman and the Angular-FullStack generator. Utilizes the following 'options' from the generator...
 
@@ -13,8 +18,13 @@ Built using Yeoman and the Angular-FullStack generator. Utilizes the following '
 - Stylus
 - Coffeescript
 
-## How to run the project
+## Features
+- [ ] Nested Comments
+- [ ] Admin Password Reset Functionality
+- [ ] Add Like to Post
+- [ ] Add like to Comments
 
+## How to run the project
 ### I. Install the DB
 1. Install Brew ([homepage](http://brew.sh/))
 2. Install mongod using this command ```brew install mongodb```
@@ -43,7 +53,3 @@ On every environment the following ENV_VARS must be set...
 - S3_KEY
 - S3_SECRET
 - NODE_ENV (must be 'production' outside of local testing)
-
-
-## Website Assets
-All website assets are stored within Amazon S3. We use **camelCasing** for all assets currently.
