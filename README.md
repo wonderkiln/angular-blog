@@ -6,7 +6,7 @@ angular-blog
 ![Homepage](docs/images/homepage-preview.png)![Admin](docs/images/admin-preview.png)
 
 ## Demo
-Demo: [angular-blog-demo.herokuapp.com](angular-blog-demo.herokuapp.com)
+Demo: [angular-blog-demo.herokuapp.com](https://angular-blog-demo.herokuapp.com)
 
 ## Description
 Built using Yeoman and the Angular-FullStack generator. Utilizes the following 'options' from the generator...
