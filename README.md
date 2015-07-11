@@ -2,17 +2,19 @@ angular-blog
 --------------------
 {{ fancy travis/npm/etc badges to come soon }}
 
+### Preview of Homepage and Admin
+![Homepage](docs/images/homepage-preview.png)![Admin](docs/images/admin-preview.png)
+
 ## Demo
-Demo: angular-blog-demo.herokuapp.com
+Demo: [angular-blog-demo.herokuapp.com](angular-blog-demo.herokuapp.com)
 
 ## Description
-
 Built using Yeoman and the Angular-FullStack generator. Utilizes the following 'options' from the generator...
 
 - MongoDB w/ Mongoose ORM
 - OAuth
 - Socket.IO
-- Angular w/ uiRouter instad of ngRoute
+- Angular w/ uiRouter instead of ngRoute
 
 #### PreProcessor Languages
 - Jade
@@ -33,17 +35,17 @@ Built using Yeoman and the Angular-FullStack generator. Utilizes the following '
 3. Set permissions to the data directory (if needed) ```sudo chmod 0755 /data/db```
 4. Run mongod ```mongod```
 
-### Install Node Packages
+### Install Node and Bower Packages
 1. In a terminal window, navigate to the app's folder.
 2. Optional: Run ```rm -rf node_modules && npm cache clean```
-1. Run ```npm install```
-2. Done!
+3. Run ```npm install```
+4. Run ```bower install```
+3. Done!
 
 ### II. Run the app
-1. In a new terminal window, navigate to the app's folder and run ```bower install```
-2. Then run ```grunt``` to confirm everything builds correctly. For Unit Test failures; you can add an optional ```-f``` to force.
-3. Then run ```grunt serve``` to see everything run!
-4. That's it :)
+1. Run ```grunt``` to confirm everything builds correctly. For Unit Test failures; you can add an optional ```-f``` to force.
+2. Then run ```grunt serve``` to see everything run!
+3. That's it :)
 
 
 ## Configuration Details
@@ -57,7 +59,7 @@ On every environment the following ENV_VARS must be set...
 - NODE_ENV (must be 'production' outside of local testing)
 
 ## Brought to you by [Inkhorn Games](http://www.inkhorngames.com)
-Developed for our upcoming title Order of Ancients ([subreddit](http://www.reddit.com/r/orderofancients)).
+Developed for our upcoming game Order of Ancients ([subreddit](http://www.reddit.com/r/orderofancients)).
 
 Connect with us:
 [Facebook](https://www.facebook.com/inkhorngames) | [Twitter](https://twitter.com/inkhorngames) | [Youtube](http://youtube.com/inkhorncompany)
