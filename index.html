@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Angular-Blog by InkhornGames</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Angular-Blog</h1>
+      <h2 class="project-tagline">AngularJS-driven ready-to-deploy Blog</h2>
+      <a href="https://github.com/InkhornGames/angular-blog" class="btn">View on GitHub</a>
+      <a href="https://github.com/InkhornGames/angular-blog/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/InkhornGames/angular-blog/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h2>
+<a id="angular-blog" class="anchor" href="#angular-blog" aria-hidden="true"><span class="octicon octicon-link"></span></a>angular-blog</h2>
+
+<p>{{ fancy travis/npm/etc badges to come soon }}</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>Demo: angular-blog-demo.herokuapp.com</p>
+
+<h2>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
+
+<p>Built using Yeoman and the Angular-FullStack generator. Utilizes the following 'options' from the generator...</p>
+
+<ul>
+<li>MongoDB w/ Mongoose ORM</li>
+<li>OAuth</li>
+<li>Socket.IO</li>
+<li>Angular w/ uiRouter instad of ngRoute</li>
+</ul>
+
+<h4>
+<a id="preprocessor-languages" class="anchor" href="#preprocessor-languages" aria-hidden="true"><span class="octicon octicon-link"></span></a>PreProcessor Languages</h4>
+
+<ul>
+<li>Jade</li>
+<li>Stylus</li>
+<li>Coffeescript</li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>[ ] !IMPORTANT - Generalize internal naming and references</li>
+<li>[ ] Nested Comments</li>
+<li>[ ] Admin Password Reset Functionality</li>
+<li>[ ] Add Like to Post</li>
+<li>[ ] Add like to Comments</li>
+</ul>
+
+<h2>
+<a id="how-to-run-the-project" class="anchor" href="#how-to-run-the-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to run the project</h2>
+
+<h3>
+<a id="i-install-the-db" class="anchor" href="#i-install-the-db" aria-hidden="true"><span class="octicon octicon-link"></span></a>I. Install the DB</h3>
+
+<ol>
+<li>Install Brew (<a href="http://brew.sh/">homepage</a>)</li>
+<li>Install mongod using this command <code>brew install mongodb</code>
+</li>
+<li>Set permissions to the data directory (if needed) <code>sudo chmod 0755 /data/db</code>
+</li>
+<li>Run mongod <code>mongod</code>
+</li>
+</ol>
+
+<h3>
+<a id="install-node-packages" class="anchor" href="#install-node-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install Node Packages</h3>
+
+<ol>
+<li>In a terminal window, navigate to the app's folder.</li>
+<li>Optional: Run <code>rm -rf node_modules &amp;&amp; npm cache clean</code>
+</li>
+<li>Run <code>npm install</code>
+</li>
+<li>Done!</li>
+</ol>
+
+<h3>
+<a id="ii-run-the-app" class="anchor" href="#ii-run-the-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>II. Run the app</h3>
+
+<ol>
+<li>In a new terminal window, navigate to the app's folder and run <code>bower install</code>
+</li>
+<li>Then run <code>grunt</code> to confirm everything builds correctly. For Unit Test failures; you can add an optional <code>-f</code> to force.</li>
+<li>Then run <code>grunt serve</code> to see everything run!</li>
+<li>That's it :)</li>
+</ol>
+
+<h2>
+<a id="configuration-details" class="anchor" href="#configuration-details" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration Details</h2>
+
+<p>In order to have the site operate expectedly environment variables are used. These are defined in <code>server &gt; config &gt; environment</code>. You can set local environment variables for testing by creating a 'local.env.js' file within the <code>server &gt; config</code> directory; a sample is available for reference!</p>
+
+<p>On every environment the following ENV_VARS must be set...</p>
+
+<ul>
+<li>S3_FOLDER</li>
+<li>S3_BUCKET</li>
+<li>S3_KEY</li>
+<li>S3_SECRET</li>
+<li>NODE_ENV (must be 'production' outside of local testing)</li>
+</ul>
+
+<h2>
+<a id="brought-to-you-by-inkhorn-games" class="anchor" href="#brought-to-you-by-inkhorn-games" aria-hidden="true"><span class="octicon octicon-link"></span></a>Brought to you by <a href="http://www.inkhorngames.com">Inkhorn Games</a>
+</h2>
+
+<p>Developed for our upcoming title Order of Ancients (<a href="http://www.reddit.com/r/orderofancients">subreddit</a>).</p>
+
+<p>Connect with us:
+<a href="https://www.facebook.com/inkhorngames">Facebook</a> | <a href="https://twitter.com/inkhorngames">Twitter</a> | <a href="http://youtube.com/inkhorncompany">Youtube</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/InkhornGames/angular-blog">Angular-Blog</a> is maintained by <a href="https://github.com/InkhornGames">InkhornGames</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
