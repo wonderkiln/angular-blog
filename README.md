@@ -1,5 +1,6 @@
 angular-blog
 --------------------
+{{ fancy travis/npm/etc badges to come soon }}
 
 ## Demo
 Demo: angular-blog-demo.herokuapp.com
@@ -54,3 +55,9 @@ On every environment the following ENV_VARS must be set...
 - S3_KEY
 - S3_SECRET
 - NODE_ENV (must be 'production' outside of local testing)
+
+## Brought to you by [Inkhorn Games](http://www.inkhorngames.com)
+Developed for our upcoming title Order of Ancients ([subreddit](http://www.reddit.com/r/orderofancients)).
+
+Connect with us:
+[Facebook](https://www.facebook.com/inkhorngames) | [Twitter](https://twitter.com/inkhorngames) | [Youtube](http://youtube.com/inkhorncompany)
